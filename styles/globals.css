@@ -1,0 +1,55 @@
+@import "../public/assets/css/plugins/bootstrap.min.css";
+@import "../public/assets/css/plugins/slick.css";
+@import "../public/assets/css/plugins/magnific-popup.css";
+@import "../public/assets/css/plugins/animate.css";
+@import "../public/assets/fonts/flaticon/flaticon.css";
+@import "../public/assets/fonts/font-awesome.min.css";
+@import "../public/assets/css/style.css";
+@import "../public/assets/css/responsive.css";
+
+.progress_box {
+  padding: 22px 26px;
+}
+a {
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container-narrow {
+  max-width: 900px;
+}
+
+.customRte {
+  font-size: 20px;
+  line-height: 2;
+}
+.customRte * + * {
+  margin-top: 80px;
+}
+
+.customRte h2 + p,
+.customRte h3 + p,
+.customRte h4 + p,
+.customRte h5 + p {
+  margin-top: 2em;
+}
+
+.customRte p + p,
+.customRte p + ul {
+  margin-top: 0px;
+}
+
+.customRte ul {
+  list-style-type: disc;
+  padding-left: 60px;
+}
+.customRte ul li {
+  margin-top: 1em;
+}
+.customRte ul li p {
+  padding: 0;
+  margin: 0;
+}
