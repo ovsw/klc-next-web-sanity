@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^3.3.2",
     "axios": "^0.26.0",
     "easy-pie-chart": "^2.1.7",
     "isotope-layout": "^3.0.6",
