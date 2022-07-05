@@ -19,7 +19,6 @@ import JourneyItemPage from "src/components/pages/journeyItemPage";
 // import getOgImage from "../utils/getOgImageFromStory";
 
 export default function Page(props) {
-  console.log("PAGE", props.page.stepItemsRefsArr);
   return (
     <>
       {/* <Head>

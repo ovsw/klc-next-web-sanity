@@ -2,16 +2,19 @@ import Home1Blog from "src/components/wellcon/Home1/Home1Blog";
 import Home1Cta from "src/components/wellcon/Home1/Hom1Cta";
 import PricingSection from "src/components/Pricing";
 
-import { getAllPosts } from "lib/api";
+import SectionRenderer from "src/components/sections";
 
-export default function Home({ posts }) {
+import { getHomePage } from "lib/api";
+
+export default function Home({ home }) {
   // if (!story.content) {
   //   return <div>Loading...</div>;
   // }
-
+  // console.log(home);
   return (
     <>
-      {JSON.stringify(posts)}
+      {/* {JSON.stringify(home)} */}
+      <SectionRenderer sections={home?.sections} />
       <PricingSection />
       <Home1Blog />
     </>
@@ -22,10 +25,10 @@ export default function Home({ posts }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps({ preview = false }) {
-  const posts = await getAllPosts();
+  const home = await getHomePage();
   return {
     props: {
-      posts,
+      home,
     },
   };
 }
