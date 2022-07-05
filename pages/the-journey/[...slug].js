@@ -2,6 +2,22 @@
 // import SEO from "../next-seo.config";
 import Link from "next/link";
 
+import { useRouter } from "next/router";
+import { groq } from "next-sanity";
+import { PortableText } from "@portabletext/react";
+import { usePreviewSubscription, urlFor } from "../../lib/sanity";
+import { getClient } from "../../lib/sanity.server";
+
+const getAllPathsInfoQuery = groq`
+  *[ _type == "pageJourneyStep" && defined(slug.current)]
+  {
+    _type,
+    "slug": slug.current,
+    stepItemsRefsArr[]->{"slug": slug.current , title},
+    "blogTags": categories[]->{"slug": slug.current, title}
+  }
+`;
+
 import {
   getAllPosts,
   getPostBySlug,
@@ -64,7 +80,16 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const allPathInfo = await getAllPathsInfo();
+  // const allPathInfo = await getAllPathsInfo();
+
+  const allPathInfo = await getClient().fetch(
+    groq`*[ _type == "pageJourneyStep" && defined(slug.current)]{
+      _type,
+      "slug": slug.current,
+      stepItemsRefsArr[]->{"slug": slug.current , title},
+      "blogTags": categories[]->{"slug": slug.current, title}
+    }`
+  );
 
   // Journey Section URL Structure
   const journeyPagesSlugs = allPathInfo.filter(
