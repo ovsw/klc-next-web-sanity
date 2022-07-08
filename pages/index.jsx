@@ -3,7 +3,7 @@ import { PortableText } from "@portabletext/react";
 import { usePreviewSubscription, urlFor } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 
-import Home1Blog from "src/components/wellcon/Home1/Home1Blog";
+import RecentPostsSection from "src/components/sections/recentPostsSection";
 import Home1Cta from "src/components/wellcon/Home1/Hom1Cta";
 import PricingSection from "src/components/Pricing";
 
@@ -34,7 +34,7 @@ export default function Home({ data, preview }) {
       {/* {JSON.stringify(home)} */}
       <SectionRenderer sections={home?.sections} />
       <PricingSection />
-      <Home1Blog />
+      <RecentPostsSection posts={home?.recentPosts} />
     </>
   );
 }
