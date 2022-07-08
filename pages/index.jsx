@@ -3,11 +3,11 @@ import { PortableText } from "@portabletext/react";
 import { usePreviewSubscription, urlFor } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 
-import RecentPostsSection from "src/components/sections/recentPostsSection";
+import RecentPostsSection from "src/components/modules/recentPostsSection";
 import Home1Cta from "src/components/wellcon/Home1/Hom1Cta";
 import PricingSection from "src/components/Pricing";
 
-import SectionRenderer from "src/components/sections";
+import SectionRenderer from "src/components/modules";
 
 // common query for sections
 import { getSectionsFields } from "lib/api";
