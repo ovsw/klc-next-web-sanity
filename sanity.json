@@ -4,7 +4,7 @@
     "name": "klc-studio"
   },
   "api": {
-    "projectId": "qh6kt7y6",
+    "projectId": "gxq04sbj",
     "dataset": "production"
   },
   "plugins": [
@@ -16,9 +16,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
