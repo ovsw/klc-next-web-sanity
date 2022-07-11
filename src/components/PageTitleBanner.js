@@ -1,7 +1,5 @@
 import Link from "next/link";
-const PageTitleBanner = ({ blok }) => {
-  const { title_text: title, page_name } = blok;
-
+const PageTitleBanner = ({ title = "[title]", pageName = "[page name]" }) => {
   return (
     <div
       className="subheader relative z-1"
@@ -10,9 +8,7 @@ const PageTitleBanner = ({ blok }) => {
       <div className="container relative z-1">
         <div className="row">
           <div className="col-12">
-            <h1 className="page_title">
-              {title ? title : "missing page title"}
-            </h1>
+            <h1 className="page_title">{title}</h1>
             <div className="page_breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
@@ -20,7 +16,7 @@ const PageTitleBanner = ({ blok }) => {
                     <Link href="/">Home</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    {page_name}
+                    {pageName}
                   </li>
                 </ol>
               </nav>

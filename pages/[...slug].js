@@ -12,6 +12,9 @@ import { getClient } from "lib/sanity.server";
 import { usePreviewSubscription, urlFor } from "lib/sanity";
 import { getAllDocSlugs, queries } from "data";
 
+import GenericPage from "components/pages/page";
+import PostPage from "components/pages/post";
+
 // import { useDebugValue } from "react";
 
 // import getOgImage from "../utils/getOgImageFromStory";
@@ -40,21 +43,16 @@ export default function Page({ data, preview }) {
         noindex={story.content.seo_noindex}
         openGraph={ogContent}
       /> */}
-      <p>
+      {/* <p>
         Page "data":
-        {/* {JSON.stringify(pageData)} */}
+        {JSON.stringify(pageData)}
         {pageData?.page?.title} - type: {pageData?.page?._type}
-      </p>
+      </p> */}
 
       {pageData?.page?._type === "page" ? (
-        <>
-          <h1>Page: {pageData?.page?.title}</h1>
-        </>
+        <GenericPage pageData={pageData} />
       ) : (
-        <>
-          <h1>Post: {pageData?.page?.title}</h1>
-          <p>{JSON.stringify(pageData?.page?.rteBody)}</p>
-        </>
+        <PostPage pageData={pageData} />
       )}
     </>
   );
@@ -84,6 +82,7 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 
+// =========== GET PAGE LIST FROM SANITY ===========
 export async function getStaticPaths() {
   const allPages = await getAllDocSlugs("page");
   const allPosts = await getAllDocSlugs("post");
