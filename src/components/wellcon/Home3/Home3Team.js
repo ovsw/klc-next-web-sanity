@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 const Home3Team = () => {
   return (
     <section className="section-padding bg-thm-color-two-gradient z-1 team_main_wrap pb-extra">

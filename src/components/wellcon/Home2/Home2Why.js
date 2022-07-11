@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { BaseNextRequest } from "next/dist/server/base-http";
 const Home2Why = () => {
   return (

@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 const Home2Blog = () => {
   return (
     <section className="section-padding">

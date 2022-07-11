@@ -4,9 +4,9 @@ import { getClient } from "lib/sanity.server";
 
 // import RecentPostsSection from "src/components/modules/recent-posts";
 // import Home1Cta from "src/components/wellcon/Home1/Hom1Cta";
-import PricingSection from "src/components/Pricing";
+import PricingSection from "components/modules/Pricing";
 
-import { Module } from "src/components/modules";
+import { Module } from "components/modules";
 
 import { queries } from "data";
 

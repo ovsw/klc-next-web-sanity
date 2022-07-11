@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 const Hom1Cta = () => {
   return (
     <div className="cta_box style_2" style={{ marginTop: "-5em" }}>

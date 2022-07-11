@@ -1,5 +1,5 @@
 // custom component based on I don't remember which one from the template
-import Link from "next/dist/client/link";
+import Link from "next/link";
 
 const StepsCustom = ({ blok }) => {
   return (

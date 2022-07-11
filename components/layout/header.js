@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { stickyNav } from "../utils";
-import { DefaultHeadActions, HeadActions } from "./HeadActions";
-import HeaderSidebar from "./HeaderSidebar";
-import HeaderTop from "./HeaderTop";
+import { stickyNav } from "src/utils";
+// import { DefaultHeadActions, HeadActions } from "./HeadActions";
+import HeaderSidebar from "./headerSidebar";
+import HeaderTop from "./headerTop";
 import {
   BlogMenu,
   CoursesMenu,
   HomeMenu,
   PageMenu,
   PortfolioMenu,
-} from "./Menu";
-import SearchTrigger from "./SearchTrigger";
+} from "./menu";
+// import SearchTrigger from "./SearchTrigger";
 
 const Header = ({
   openMobileMenu,

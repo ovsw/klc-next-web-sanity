@@ -1,4 +1,4 @@
-import PostCard from "src/components/molecules/postCard";
+import PostCard from "components/postCard";
 
 const PostList = ({ posts }) => {
   return (

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import {
   BlogMenu,
   CoursesMenu,
   HomeMenu,
   PageMenu,
   PortfolioMenu,
-} from "./Menu";
+} from "./menu";
 
 const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState("");
@@ -14,7 +14,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const activeLi = (name) =>
     name === activeMenu ? { display: "block" } : { display: "none" };
   return (
-    <Fragment>
+    <>
       <aside
         className={`aside_bar aside_bar_left aside_mobile ${
           showMobileMenu ? "open" : ""
@@ -83,7 +83,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
         className="aside-overlay trigger-left"
         onClick={() => closeMobileMenu()}
       ></div>
-    </Fragment>
+    </>
   );
 };
 

@@ -24,8 +24,8 @@ import {
   getJourneyItemPageBySlug,
 } from "lib/api";
 
-import JourneyStepPage from "src/components/pages/journeyStepPage";
-import JourneyItemPage from "src/components/pages/journeyItemPage";
+import JourneyStepPage from "components/pages/journeyStepPage";
+import JourneyItemPage from "components/pages/journeyItemPage";
 
 // import { useDebugValue } from "react";
 

@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { Nav, Tab } from "react-bootstrap";
 const Home1Pricing = () => {
   return (

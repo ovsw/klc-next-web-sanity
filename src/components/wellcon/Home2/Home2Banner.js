@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import Counter from "../../Counter";
 
 const Home2Banner = (props) => {

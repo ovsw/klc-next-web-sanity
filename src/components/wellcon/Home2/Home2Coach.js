@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import Slider from "react-slick";
 import { coach_slider } from "../../../sliderProps";
 

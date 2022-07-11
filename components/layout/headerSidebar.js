@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Fragment } from "react";
 const HeaderSidebar = ({ openSidebar, closeSidebar }) => {
   return (
-    <Fragment>
+    <>
       <aside
         className={`aside_bar aside_bar_right aside_canvas ${
           openSidebar ? "open" : ""
@@ -107,7 +106,7 @@ const HeaderSidebar = ({ openSidebar, closeSidebar }) => {
         className="aside-overlay trigger-right"
         onClick={() => closeSidebar()}
       ></div>
-    </Fragment>
+    </>
   );
 };
 

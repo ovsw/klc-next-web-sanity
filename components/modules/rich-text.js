@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PostBodyRte from "./PostBodyRte";
+import PostBodyRte from "components/body-rte";
 
 const PostBody = ({ blok }) => {
   return (
