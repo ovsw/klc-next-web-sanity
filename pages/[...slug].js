@@ -1,19 +1,32 @@
 // import { NextSeo } from "next-seo";
 // import SEO from "../next-seo.config";
-import Link from "next/link";
+import { getClient } from "lib/sanity.server";
 
-import {
-  getAllPosts,
-  getPostBySlug,
-  getAllPagesGeneric,
-  getAllPathsInfo,
-} from "lib/api";
+// import {
+//   getAllPosts,
+//   getPostBySlug,
+//   getAllPagesGeneric,
+//   getAllPathsInfo,
+// } from "lib/api";
+
+import { usePreviewSubscription, urlFor } from "lib/sanity";
+import { getAllDocSlugs, queries } from "data";
 
 // import { useDebugValue } from "react";
 
 // import getOgImage from "../utils/getOgImageFromStory";
 
-export default function Page() {
+export default function Page({ data, preview }) {
+  // subscribe to the preview data
+  const { data: pageData } = usePreviewSubscription(data?.query, {
+    params: data?.queryParams ?? {},
+    initialData: data.pageData,
+    enabled: preview,
+  });
+
+  // console.log("PREVIEW", preview);
+  // console.log("DATA", pageData);
+
   return (
     <>
       {/* <Head>
@@ -28,57 +41,65 @@ export default function Page() {
         openGraph={ogContent}
       /> */}
       <p>
-        Page:
-        {/* {page?.slug} */}
+        Page "data":
+        {/* {JSON.stringify(pageData)} */}
+        {pageData?.page?.title} - type: {pageData?.page?._type}
       </p>
+
+      {pageData?.page?._type === "page" ? (
+        <>
+          <h1>Page: {pageData?.page?.title}</h1>
+        </>
+      ) : (
+        <h1>Post: {pageData?.page?.title}</h1>
+      )}
     </>
   );
 }
-
+// =========== GET DATA FROM SANITY ===========
 export async function getStaticProps({ params, preview = false }) {
-  // const page = await getPostBySlug(params.slug?.[0]);
+  // this is a catch-all route so slug param is an array, we need to join it
+  const slug = params.slug.join("/");
+
+  // set up the query, query parameters
+  const query = queries.rootPageQuery;
+  const queryParams = { slugVariations: [slug, `/${slug}`, `/${slug}/`] };
+  // make the query
+  const pageData = await getClient(preview).fetch(query, queryParams);
+
   return {
     props: {
-      title: "title",
-      something: "other",
+      preview,
+      data: {
+        // pass down the query result to the page component
+        pageData,
+        // as well as the query and query parameters, needed for the via usePreviewSubscription()
+        query,
+        queryParams,
+      },
     },
   };
 }
 
 export async function getStaticPaths() {
-  const allPathInfo = await getAllPathsInfo();
+  const allPages = await getAllDocSlugs("page");
+  const allPosts = await getAllDocSlugs("post");
+  // const allTags = await getAllDocSlugs("tag");
 
-  // // Journey Section URL Structure
-  // const journeyPagesSlugs = allPathInfo.filter(
-  //   (p) => p._type == "pageJourneyStep"
-  // );
-
-  // // map ove all the main journey section pages (step pages)
-  // let journeyPagesPaths = [];
-  // journeyPagesSlugs.map((p) => {
-  //   let pathsArr = [{ params: { slug: [p.slug] } }];
-
-  //   // map over all sub pages (step items) and add them to the array
-  //   p.stepItemsRefsArr.map((stepItem) => {
-  //     pathsArr.push({ params: { slug: [p.slug, stepItem.slug] } });
-  //   });
-  //   journeyPagesPaths.push(...pathsArr);
-  // });
-
-  const postsInfo = allPathInfo.filter((p) => p._type == "post");
-  const postPaths = postsInfo?.map((p) => {
-    return { params: { slug: [p.slug] } };
-  });
+  const allDocs = [...allPages, ...allPosts];
 
   return {
-    paths: [...postPaths],
+    paths:
+      allDocs?.map((page) => {
+        // this is a catch-all route, so  slug param needs to be an array, otherwise next will not recognize it
+        const slugs = page.slug.split("/").filter(Boolean);
+
+        return {
+          params: {
+            slug: slugs,
+          },
+        };
+      }) || [], // escape hatch for when there are no pages
     fallback: false,
   };
 }
-
-// export async function getServerSideProps({ params }) {
-//   const page = await getPostBySlug(params.slug);
-//   return {
-//     props: { page },
-//   };
-// }

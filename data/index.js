@@ -39,21 +39,33 @@ export async function getStaticPage(pageData, preview) {
 export async function getPage(slug, preview) {
   const slugs = JSON.stringify([slug, `/${slug}`, `/${slug}/`]);
 
-  const query = `
+  const query = groq`
     {
-      "page": *[_type == "page" && slug.current in ${slugs}] | order(_updatedAt desc)[0]{
+      "page": *[_type in ["page", "post"] && slug.current in ${slugs}] | order(_updatedAt desc)[0]{
         "id": _id,
         hasTransparentHeader,
-        modules[]{
-          defined(_ref) => { ...@->content[0] {
-            ${queries.modules}
-          }},
-          !defined(_ref) => {
-            ${queries.modules},
-          }
-        },
         title,
-        seo
+        seo,
+        // ============= page specific fields =============
+        _type == "page" => {
+          modules[]{
+            defined(_ref) => { ...@->content[0] {
+               ${queries.modules}
+            }},
+            !defined(_ref) => {
+               ${queries.modules},
+            }
+          },
+        },
+        // ============= post specific fields =============
+         _type == "post" => {
+          title,
+          categories[],
+          mainImage,
+          publishedAt,
+          rteBody,
+          author->{name, slug},
+        },
       },
       ${queries.site}
     }

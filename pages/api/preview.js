@@ -1,4 +1,4 @@
-import { getStaticRoute, getDynamicRoute } from "lib/routes";
+// import { getStaticRoute, getDynamicRoute } from "lib/routes";
 
 export default function handler(req, res) {
   // bail if no secret provided
@@ -20,9 +20,9 @@ export default function handler(req, res) {
   }
 
   // check if we have a slug to redirect to (page to be previewed)
-  if (!req.query.slug) {
-    return res.status(401).json({ message: "No slug" });
-  }
+  // if (!req.query.slug) {
+  //   return res.status(401).json({ message: "No slug" });
+  // }
 
   // Enable Preview Mode by setting the cookies and passing the sanity token for fetching
   res.setPreviewData(
@@ -35,7 +35,7 @@ export default function handler(req, res) {
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
   // res.writeHead(307, { Location: `/${req?.query?.slug}` ?? `/` });
-  res.redirect(`/`);
+  res.redirect(`/${req?.query?.slug}`);
 
   // return res.end();
 }

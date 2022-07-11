@@ -20,3 +20,62 @@ export const modules = groq`
        ...
     }
 `;
+
+// Construct our "site" GROQ
+export const site = groq`
+  "site": {
+    "title": *[_type == "generalSettings"][0].siteTitle,
+    "rootDomain": *[_type == "generalSettings"][0].siteURL,
+    "cookieConsent": *[_type == "cookieSettings"][0]{
+      enabled,
+      message,
+      "link": link->{"type": _type, "slug": slug.current}
+    },
+    "seo": *[_type == "seoSettings"][0]{
+      metaTitle,
+      metaDesc,
+      shareTitle,
+      shareDesc,
+      "shareGraphic": shareGraphic.asset->url,
+      "favicon": favicon.asset->url,
+      "faviconLegacy": faviconLegacy.asset->url,
+      "touchIcon": touchIcon.asset->url,
+    },
+    "gtmID": *[_type == "generalSettings"][0].gtmID,
+  }
+`;
+
+// ============================================
+//  for [...slug]
+export const rootPageQuery = groq`
+    {
+      "page": *[_type in ["page", "post"] && slug.current in $slugVariations] | order(_updatedAt desc)[0]{
+        "id": _id,
+        _type,
+        hasTransparentHeader,
+        title,
+        seo,
+        // ============= page specific fields =============
+        _type == "page" => {
+          modules[]{
+            defined(_ref) => { ...@->content[0] {
+               ${modules}
+            }},
+            !defined(_ref) => {
+               ${modules},
+            }
+          },
+        },
+        // ============= post specific fields =============
+         _type == "post" => {
+          title,
+          categories[],
+          mainImage,
+          publishedAt,
+          rteBody,
+          author->{name, slug},
+        },
+      },
+      ${site}
+    }
+  `;
