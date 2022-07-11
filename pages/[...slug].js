@@ -51,7 +51,10 @@ export default function Page({ data, preview }) {
           <h1>Page: {pageData?.page?.title}</h1>
         </>
       ) : (
-        <h1>Post: {pageData?.page?.title}</h1>
+        <>
+          <h1>Post: {pageData?.page?.title}</h1>
+          <p>{JSON.stringify(pageData?.page?.rteBody)}</p>
+        </>
       )}
     </>
   );

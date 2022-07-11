@@ -1,4 +1,4 @@
-// based on thhe
+// custom component based on I don't remember which one from the template
 import Link from "next/dist/client/link";
 
 const StepsCustom = ({ blok }) => {

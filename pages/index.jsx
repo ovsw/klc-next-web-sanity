@@ -1,5 +1,4 @@
 import { groq } from "next-sanity";
-import { PortableText } from "@portabletext/react";
 import { usePreviewSubscription, urlFor } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 

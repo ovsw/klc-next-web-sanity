@@ -1,10 +1,7 @@
 // import { NextSeo } from "next-seo";
 // import SEO from "../next-seo.config";
-import Link from "next/link";
 
-import { useRouter } from "next/router";
 import { groq } from "next-sanity";
-import { PortableText } from "@portabletext/react";
 // import { usePreviewSubscription, urlFor } from "../../lib/sanity";
 import { getClient } from "../../lib/sanity.server";
 

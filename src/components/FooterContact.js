@@ -1,4 +1,4 @@
-import Link from "next/dist/client/link";
+import Link from "next/link";
 const FooterContact = () => {
   return (
     <div className="cta_box style_2">

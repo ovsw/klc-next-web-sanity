@@ -1,3 +1,4 @@
+// custom component for price table
 import PricingTable from "./Price";
 
 const PricingSection = ({ blok }) => {

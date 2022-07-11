@@ -1,3 +1,4 @@
+// was used previously in storyblock to render the rich text body of the post
 import Link from "next/link";
 import BodyRte from "./PageBodyRte";
 import { storyblokEditable } from "@storyblok/react";
