@@ -78,6 +78,12 @@ export const rootPageQuery = groq`
           publishedAt,
           rteBody,
           author->{name, slug},
+          'previousPost': *[_type == 'post' && publishedAt < ^.publishedAt] 
+            | order(publishedAt desc)[0]
+            {title, publishedAt, mainImage, slug},
+          'nextPost': *[_type == 'post' && publishedAt > ^.publishedAt] 
+            | order(publishedAt asc)[0]
+            {title, publishedAt, mainImage, slug},
         },
       },
       ${site}

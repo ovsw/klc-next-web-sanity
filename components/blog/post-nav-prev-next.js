@@ -1,44 +1,52 @@
 import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "lib/sanity";
 
-const NavPrevNext = () => {
+const PostItem = ({ post, type }) => (
+  <li>
+    <div style={{ width: "100%" }}>
+      {type == "older" ? "Previous Post" : "Next Post"}
+    </div>
+    <Link href={`/${post.slug?.current}`}>
+      <a className="image">
+        <Image
+          src={urlFor(post.mainImage.image).width(140).height(140).url()}
+          alt="img"
+          className="image-fit"
+          width={140}
+          height={140}
+        />
+      </a>
+    </Link>
+    <div className="text">
+      <h6 className="mb-0">
+        <Link href={`/${post.slug?.current}`}>{post.title}</Link>
+      </h6>
+      <p className="mb-0">
+        <strong>
+          <i className="fal fa-calendar-alt" />{" "}
+        </strong>
+        <Link href="/blog-grid">{post.publishedAt}</Link>
+      </p>
+    </div>
+  </li>
+);
+
+const NavPrevNext = ({ previousPost, nextPost }) => {
+  let justifyValue = "space-between";
+  if (previousPost == null) {
+    justifyValue = "flex-start";
+  } else if (nextPost == null) {
+    justifyValue = "flex-end";
+  }
+
   return (
-    <ul className="post_navigation">
-      <li>
-        <div className="image">
-          <img src="assets/images/blog/1.jpg" alt="img" className="image-fit" />
-        </div>
-        <div className="text">
-          <h6 className="mb-0">
-            <Link href="/blog-details">
-              Build Seamless Spreadshet Import Experience
-            </Link>
-          </h6>
-          <p className="mb-0">
-            <strong>
-              <i className="fal fa-calendar-alt" />{" "}
-            </strong>
-            <Link href="/blog-grid">25 May 2021</Link>
-          </p>
-        </div>
-      </li>
-      <li>
-        <div className="image">
-          <img src="assets/images/blog/2.jpg" alt="img" className="image-fit" />
-        </div>
-        <div className="text">
-          <h6 className="mb-0">
-            <Link href="/blog-details">
-              Creating Online Environme Work Well Older
-            </Link>
-          </h6>
-          <p className="mb-0">
-            <strong>
-              <i className="fal fa-calendar-alt" />{" "}
-            </strong>
-            <Link href="/blog-grid">25 May 2021</Link>
-          </p>
-        </div>
-      </li>
+    <ul
+      className="post_navigation"
+      // style={{ justifyContent: `${justifyValue}` }}
+    >
+      {nextPost != null && <PostItem post={nextPost} type="newer" />}
+      {previousPost != null && <PostItem post={previousPost} type="older" />}
     </ul>
   );
 };

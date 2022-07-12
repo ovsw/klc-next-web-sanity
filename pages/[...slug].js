@@ -57,6 +57,9 @@ export default function Page({ data, preview }) {
     </>
   );
 }
+
+// TODO: add next and prev posts info to the page
+// https://stackoverflow.com/questions/62594914/how-to-auto-reference-to-other-post-in-sanity-io
 // =========== GET DATA FROM SANITY ===========
 export async function getStaticProps({ params, preview = false }) {
   // this is a catch-all route so slug param is an array, we need to join it
