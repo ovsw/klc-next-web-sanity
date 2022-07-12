@@ -1,5 +1,10 @@
-const Home3About = ({ blok }) => {
-  const { eyebrow_text, heading_text, intro_text, main_image } = blok;
+const Home3About = (props) => {
+  const {
+    eyebrow_text = "[Eyebrow text goes here]",
+    heading_text = "[Heading text goes here]",
+    intro_text = "[Intro text goes here]",
+    main_image,
+  } = props;
 
   return (
     <section className="section-padding pt-0 about">
@@ -23,10 +28,10 @@ const Home3About = ({ blok }) => {
             <div className="section-title left-align wow fadeInUp">
               <p className="subtitle">
                 <i className="fal fa-book" />
-                {eyebrow_text || "Eyebrow text goes here"}
+                {eyebrow_text}
               </p>
-              <h3 className="title">{heading_text || "Heading goes here"}</h3>
-              <p>{intro_text || "intro text goes here"} </p>
+              <h3 className="title">{heading_text}</h3>
+              <p>{intro_text} </p>
             </div>
             <ul className="about_list">
               <li className=" wow fadeInDown">

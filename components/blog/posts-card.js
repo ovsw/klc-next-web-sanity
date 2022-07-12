@@ -32,7 +32,7 @@ const PostCard = ({ post }) => {
             Quis autem vel eumiure reprehenderit quis volupta velit esse quam
             nihil molestiae conse quatur vel illum qui dolorem
           </p>
-          <Link href={post.slug}>
+          <Link href={`/${post.slug.current}`}>
             <a className="thm-btn bg-thm-color-white thm-color-one btn-rectangle">
               Read More <i className="fal fa-chevron-right ml-2" />
             </a>

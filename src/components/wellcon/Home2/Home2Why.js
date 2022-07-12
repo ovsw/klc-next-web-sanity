@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { BaseNextRequest } from "next/dist/server/base-http";
-const Home2Why = () => {
+
+const Home2Why = ({ title = "[title here]" }) => {
   return (
     <section className="section-padding pt-0 about">
       <div className="container">
@@ -11,7 +11,7 @@ const Home2Why = () => {
                 <i className="fal fa-book" />
                 Program
               </p>
-              <h3 className="title">What We Work On</h3>
+              <h3 className="title">{title}</h3>
               <p>
                 Each child is unique and so I make a point of getting to know
                 their individual personality, context and circumsntances to

@@ -1,7 +1,7 @@
 import Link from "next/link";
 const Hom1Cta = () => {
   return (
-    <div className="cta_box style_2" style={{ marginTop: "-5em" }}>
+    <div className="cta_box style_2 ">
       <div className="container relative z-2">
         <div className="bg-thm-color-two cta_box_inner z-2 mb-negative">
           {/* <img

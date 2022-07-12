@@ -1,7 +1,7 @@
 // custom component for price table
 import PricingTable from "src/components/Price";
 
-const PricingModule = ({ blok }) => {
+const Pricing = () => {
   return (
     <section
       className="pricing_sec section"
@@ -29,4 +29,4 @@ const PricingModule = ({ blok }) => {
   );
 };
 
-export default PricingModule;
+export default Pricing;

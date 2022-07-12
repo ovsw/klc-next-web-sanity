@@ -2,10 +2,6 @@ import { groq } from "next-sanity";
 import { usePreviewSubscription, urlFor } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 
-// import RecentPostsSection from "src/components/modules/recent-posts";
-// import Home1Cta from "src/components/wellcon/Home1/Hom1Cta";
-import PricingSection from "components/modules/Pricing";
-
 import { Module } from "components/modules";
 
 import { queries } from "data";
@@ -48,8 +44,6 @@ export default function Home({ data, preview }) {
       {page.modules.map((module, key) => {
         return <Module key={key} index={key} module={module} />;
       })}
-      <PricingSection />
-      {/* <RecentPostsSection posts={page?.recentPosts} /> */}
     </>
   );
 }

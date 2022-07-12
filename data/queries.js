@@ -16,8 +16,12 @@ const page = groq`
 
 // Construct our "modules" GROQ
 export const modules = groq`
-    _type == "hero" => {
-       ...
+    ...,
+    _type == "latestPosts" => {
+       
+        "posts": *[_type == "post"][0...3] {
+            ...,
+        } | order(publishedAt desc)
     }
 `;
 
