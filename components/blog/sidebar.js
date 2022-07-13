@@ -17,7 +17,7 @@ const BlogSidebar = ({ site }) => {
 
         <SidebarBanner />
 
-        <SidebarTags tags={site?.tags} />
+        <SidebarTags heading="All Tags" tags={site?.tags} />
       </div>
     </div>
   );

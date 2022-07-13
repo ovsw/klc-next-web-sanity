@@ -51,7 +51,8 @@ export const site = groq`
       "touchIcon": touchIcon.asset->url,
     },
     "gtmID": *[_type == "generalSettings"][0].gtmID,
-    "recentPosts": *[_type == "post" && defined(slug) ]| order(publishedAt desc)[0...3] ${postSummaryFields}
+    "recentPosts": *[_type == "post" && defined(slug) ]| order(publishedAt desc)[0...3] ${postSummaryFields},
+    "tags": *[_type == "tag" && defined(slug)] {title, slug, journeyItemRef->{title, slug}},
   }
 `;
 

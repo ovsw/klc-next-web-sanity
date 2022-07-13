@@ -1,21 +1,15 @@
 import Link from "next/link";
 
-const SidebarTags = () => {
+const SidebarTags = ({ heading = "Popular Tags", tags }) => {
   return (
     <div className="sidebar_widget wow fadeInUp">
-      <h5 className="widget_title">Popular Tags</h5>
+      <h5 className="widget_title">{heading}</h5>
       <div className="tags">
-        <Link href="/blog-grid">Business</Link>
-        <Link href="/blog-grid">Corporate</Link>
-        <Link href="/blog-grid">HTML</Link>
-        <Link href="/blog-grid">Art</Link>
-        <Link href="/blog-grid">Finance</Link>
-        <Link href="/blog-grid">Investment</Link>
-        <Link href="/blog-grid">CSS</Link>
-        <Link href="/blog-grid">Coach</Link>
-        <Link href="/blog-grid">Planing</Link>
-        <Link href="/blog-grid">Creative</Link>
-        <Link href="/blog-grid">Health</Link>
+        {tags?.map((tag, i) => (
+          <Link href={`/${tag.slug.current}`} key={i}>
+            {tag.title}
+          </Link>
+        ))}
       </div>
     </div>
   );
