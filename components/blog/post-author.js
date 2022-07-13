@@ -1,18 +1,20 @@
+import Image from "next/image";
+
 const Author = () => {
   return (
     <div className="post_author">
-      <img
-        src="assets/images/blog/author.jpg"
-        alt="img"
-        className="image-fit"
-      />
+      <div className="img">
+        <Image
+          src="/assets/images/blog/sheila-jones-headshot.jpg"
+          alt="Sheila Jones"
+          // className="image-fit"
+          layout="fill"
+        />
+      </div>
       <div className="text">
-        <h5 className="mb-2">Nathan George</h5>
+        <h5 className="mb-2">Sheila Jones</h5>
         <p className="mb-2">
-          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-          quam nihil molestiae consequatu vel illum qui dolorem eum fugiat quo
-          voluptas nulla pariano one rejects, dislikes, or avoids pleasure
-          itself, because
+        I am on a mission to help empower our children to realize their potential, by giving them the tools to be successful no matter where they go in life.
         </p>
         <ul className="social">
           <li>
