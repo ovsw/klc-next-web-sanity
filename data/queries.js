@@ -25,6 +25,11 @@ export const modules = groq`
     }
 `;
 
+// constuct our "post summary" GROQ
+const postSummaryFields = groq`
+  {title, publishedAt, mainImage, slug}
+`;
+
 // Construct our "site" GROQ
 export const site = groq`
   "site": {
@@ -46,6 +51,7 @@ export const site = groq`
       "touchIcon": touchIcon.asset->url,
     },
     "gtmID": *[_type == "generalSettings"][0].gtmID,
+    "recentPosts": *[_type == "post" && defined(slug) ]| order(publishedAt desc)[0...3] ${postSummaryFields}
   }
 `;
 
@@ -73,17 +79,17 @@ export const rootPageQuery = groq`
         // ============= post specific fields =============
          _type == "post" => {
           title,
-          categories[],
+          categories[]->{title, slug, journeyItemRef->{title, slug}},
           mainImage,
           publishedAt,
           rteBody,
           author->{name, slug},
           'previousPost': *[_type == 'post' && publishedAt < ^.publishedAt] 
             | order(publishedAt desc)[0]
-            {title, publishedAt, mainImage, slug},
+            ${postSummaryFields},
           'nextPost': *[_type == 'post' && publishedAt > ^.publishedAt] 
             | order(publishedAt asc)[0]
-            {title, publishedAt, mainImage, slug},
+            ${postSummaryFields},
         },
       },
       ${site}

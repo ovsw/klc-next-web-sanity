@@ -90,7 +90,7 @@ const PostPage = ({ pageData }) => {
               {/* <PostCommentsForm /> */}
               {/* post details */}
             </div>
-            <BlogSidebar />
+            <BlogSidebar site={site}/>
           </div>
         </div>
       </div>
