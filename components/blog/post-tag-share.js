@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-const PostTagsAndShare = () => {
+const PostTagsAndShare = ({tags}) => {
   return (
     <div className="post_tags_share">
       <div className="post_tags">
-        <h6>Popular Tags: </h6>
+        <h6>Tags for this post: </h6>
         <div className="tags">
-          <Link href="/blog-grid">Cleaning</Link>
-          <Link href="/blog-grid">House</Link>
-          <Link href="/blog-grid">Office</Link>
-          <Link href="/blog-grid">Kitchen</Link>
+          {tags.map((tag, i) => (
+            <Link href={`/${tag?.slug?.current}`} key={i}><a>{tag?.title}</a></Link>
+          ))}
         </div>
       </div>
       <div className="post_share">

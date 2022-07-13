@@ -76,7 +76,7 @@ const PostPage = ({ pageData }) => {
                   {/* ========== MAIN CONTENT END ========== */}
                 </div>
 
-                <PostTagsAndShare />
+                <PostTagsAndShare tags={page?.categories}/>
 
                 <Author />
 
