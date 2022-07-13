@@ -11,7 +11,10 @@ const BlogSidebar = ({ site }) => {
       <div className="sidebar style_2">
         <BlogSearchForm />
 
-        <SidebarCategories />
+        <SidebarCategories
+          heading="Journey Steps"
+          categories={site?.journeySteps}
+        />
 
         <SidebarRecentPosts heading="Latest Posts" posts={site?.recentPosts} />
 

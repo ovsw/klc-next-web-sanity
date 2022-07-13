@@ -1,28 +1,17 @@
 import Link from "next/link";
 
-const SidebarCategories = () => {
+const SidebarCategories = ({ heading = "Categories", categories = [] }) => {
   return (
     <div className="sidebar_widget wow fadeInUp">
-      <h5 className="widget_title">Category</h5>
+      <h5 className="widget_title">{heading}</h5>
       <ul className="category_widgets">
-        <li>
-          <Link href="/blog-grid">Life Courses</Link>
-        </li>
-        <li>
-          <Link href="/blog-grid">Business Courses</Link>
-        </li>
-        <li>
-          <Link href="/blog-grid">Advance Wordpress</Link>
-        </li>
-        <li>
-          <Link href="/blog-grid">Basic HTML Coach</Link>
-        </li>
-        <li>
-          <Link href="/blog-grid">Health Courses</Link>
-        </li>
-        <li>
-          <Link href="/blog-grid">English Learning</Link>
-        </li>
+        {categories.map((journeyStepPage, i) => (
+          <li key={i}>
+            <Link href={`/the-journey/${journeyStepPage.slug.current}`}>
+              {journeyStepPage.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
