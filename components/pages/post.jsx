@@ -31,7 +31,10 @@ const PostPage = ({ pageData }) => {
                 <PostImage />
 
                 <div className="post_caption">
-                  <PostMetaHeader />
+                  <PostMetaHeader
+                    author={page?.author.name}
+                    date={page?.publishedAt}
+                  />
                   {/* ========== MAIN CONTENT START ========== */}
                   <h4 className="post_title">
                     <Link href="/blog-details">
@@ -76,7 +79,7 @@ const PostPage = ({ pageData }) => {
                   {/* ========== MAIN CONTENT END ========== */}
                 </div>
 
-                <PostTagsAndShare tags={page?.categories}/>
+                <PostTagsAndShare tags={page?.categories} />
 
                 <Author />
 
@@ -90,7 +93,7 @@ const PostPage = ({ pageData }) => {
               {/* <PostCommentsForm /> */}
               {/* post details */}
             </div>
-            <BlogSidebar site={site}/>
+            <BlogSidebar site={site} />
           </div>
         </div>
       </div>
