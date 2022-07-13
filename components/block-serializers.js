@@ -4,7 +4,25 @@ export const blockSerializers = {
   // ========================= TYPES (images, etc) =========================
   /* An object of React components that renders different types of objects that might appear both as part of the input array, or as inline objects within text blocks - eg alongside text spans. */
   types: {
-    image: SampleImageComponent,
+    photo: SampleImageComponent,
+    quote: ({ value: { text, author = null, url } }) => {
+      return (
+        <>
+          {/* <figure>
+            <blockquote cite={url}>{text}</blockquote>
+            {author && <figcaption>{author}</figcaption>}
+          </figure> */}
+          <blockquote>
+            <h4 className="quote_title">
+              {/* “ */}
+              {text}
+              {/* ” */}
+            </h4>
+            {author != null && <cite className="quote_author"> {author}</cite>}
+          </blockquote>
+        </>
+      );
+    },
     // Any other custom types you have in your content
     // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
   },

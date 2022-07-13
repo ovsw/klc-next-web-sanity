@@ -20,8 +20,6 @@ const PostPage = ({ pageData }) => {
     <>
       <PageTitleBanner pageName={page?.title} title={page?.title} />
 
-      {/* <PortableText blocks={page?.rteBody} /> */}
-
       <div className="section-padding">
         <div className="container">
           <div className="row justify-content-between">
@@ -36,7 +34,8 @@ const PostPage = ({ pageData }) => {
                     date={page?.publishedAt}
                   />
                   {/* ========== MAIN CONTENT START ========== */}
-                  <h4 className="post_title">
+                  <PortableText modules={page?.rteBody} />
+                  {/* <h4 className="post_title">
                     <Link href="/blog-details">
                       Writing Multiplayer Text Adventure Engine In Node Game
                       Engine Server Design Optimizing For Mobile
@@ -75,7 +74,7 @@ const PostPage = ({ pageData }) => {
                     pursues or desires to obtain pain of itself, because it is
                     pain, but because occasionally circumstances occur in which
                     toil and pain can procure him some great pleasure.
-                  </p>
+                  </p> */}
                   {/* ========== MAIN CONTENT END ========== */}
                 </div>
 
