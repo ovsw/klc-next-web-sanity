@@ -1,30 +1,10 @@
 // import { NextSeo } from "next-seo";
 // import SEO from "../next-seo.config";
 
-import { groq } from "next-sanity";
-// import { usePreviewSubscription, urlFor } from "../../lib/sanity";
 import { getClient } from "../../lib/sanity.server";
 
+import { usePreviewSubscription } from "lib/sanity";
 import { getJourneyDocSlugs, queries } from "data";
-
-// const getAllPathsInfoQuery = groq`
-//   *[ _type == "pageJourneyStep" && defined(slug.current)]
-//   {
-//     _type,
-//     "slug": slug.current,
-//     stepItemsRefsArr[]->{"slug": slug.current , title},
-//     "blogTags": categories[]->{"slug": slug.current, title}
-//   }
-// `;
-
-import {
-  getAllPosts,
-  getPostBySlug,
-  getAllPagesGeneric,
-  getAllPathsInfo,
-  getJourneyStepPageBySlug,
-  getJourneyItemPageBySlug,
-} from "lib/api";
 
 import JourneyStepPage from "components/pages/journeyStepPage";
 import JourneyItemPage from "components/pages/journeyItemPage";
@@ -33,8 +13,17 @@ import JourneyItemPage from "components/pages/journeyItemPage";
 
 // import getOgImage from "../utils/getOgImageFromStory";
 
-export default function Page(props) {
-  console.log("Page", props);
+export default function Page({ data, preview }) {
+  // subscribe to the preview data
+  const { data: pageData } = usePreviewSubscription(data?.query, {
+    params: data?.queryParams ?? {},
+    initialData: data.pageData,
+    enabled: preview,
+  });
+
+  console.log("PREVIEW", preview);
+  console.log("DATA", pageData);
+
   return (
     <>
       {/* <Head>
@@ -51,6 +40,8 @@ export default function Page(props) {
       {/* {JSON.stringify(props)}
       <hr />
       {JSON.stringify(props.page.stepItemsRefsArr)} */}
+
+      <h1>{pageData.page.title}</h1>
 
       {/* ================================== */}
       {/* {props.page._type === "pageJourneyStep" ? (
@@ -70,11 +61,9 @@ export async function getStaticProps({ params, preview = false }) {
   // a journey step page will have a slug array with a length of 1
   // while an item page will have a slug arr with a length of 2 (including the parent step page slug)
   if (params.slug.length == 1) {
-    // page = await getJourneyStepPageBySlug(params.slug?.[0]);
     slug = params.slug?.[0];
     query = queries.journeyStepPageQuery;
   } else {
-    // page = await getJourneyItemPageBySlug(params.slug?.[1]);
     slug = params.slug?.[1];
     query = queries.journeyItemPageQuery;
   }
@@ -82,12 +71,6 @@ export async function getStaticProps({ params, preview = false }) {
   const queryParams = { slugVariations: [slug, `/${slug}`, `/${slug}/`] };
   // make the query
   const pageData = await getClient(preview).fetch(query, queryParams);
-
-  // return {
-  //   props: {
-  //     page,
-  //   },
-  // };
 
   return {
     props: {
