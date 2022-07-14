@@ -9,7 +9,7 @@ import { getClient } from "lib/sanity.server";
 //   getAllPathsInfo,
 // } from "lib/api";
 
-import { usePreviewSubscription, urlFor } from "lib/sanity";
+import { usePreviewSubscription } from "lib/sanity";
 import { getAllDocSlugs, queries } from "data";
 
 import GenericPage from "components/pages/page";
