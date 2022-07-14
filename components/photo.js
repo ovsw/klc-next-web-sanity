@@ -6,7 +6,7 @@ const SampleImageComponent = ({ value, isInline }) => {
   const { width, height } = getImageDimensions(value);
 
   return (
-    <>
+    <div className="my-5">
       <Image
         src={urlFor(value)
           .width(isInline ? 100 : 800)
@@ -25,7 +25,7 @@ const SampleImageComponent = ({ value, isInline }) => {
           aspectRatio: width / height,
         }}
       />
-    </>
+    </div>
   );
 };
 export default SampleImageComponent;

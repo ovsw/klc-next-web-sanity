@@ -1,3 +1,7 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
 @import "../public/assets/css/plugins/bootstrap.min.css";
 @import "../public/assets/css/plugins/slick.css";
 @import "../public/assets/css/plugins/magnific-popup.css";

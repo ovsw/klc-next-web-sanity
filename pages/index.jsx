@@ -31,7 +31,7 @@ export default function Home({ data, preview }) {
     enabled: preview,
   });
 
-  console.log("PREVIEW", preview);
+  // console.log("PREVIEW", preview);
 
   // const { page, site } = data;
   // console.log("PAGE ID:", page.id);

@@ -1,10 +1,9 @@
-import BodyRte from "components/body-rte";
-import PortableText from "components/block-content";
+import ProsableText from "components/prosable-text";
 
 const Page = ({ pageData }) => (
   <>
     <h1>Page: {pageData?.page?.title}</h1>
-    <PortableText blocks={pageData?.page?.rteBody} />
+    <ProsableText blocks={pageData?.page?.rteBody} />
     {/* <BodyRte /> */}
   </>
 );

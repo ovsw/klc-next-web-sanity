@@ -5,7 +5,7 @@ import SidebarBanner from "./sidebar-banner";
 import SidebarTags from "./sidebar-tags";
 
 const BlogSidebar = ({ site }) => {
-  console.log("site", site);
+  // console.log("site", site);
   return (
     <div className="col-lg-4">
       <div className="sidebar style_2">

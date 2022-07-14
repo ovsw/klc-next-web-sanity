@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import BodyRte from "components/body-rte";
-import PortableText from "components/block-content";
+import ProsableText from "components/prosable-text";
 
 import PageTitleBanner from "src/components/PageTitleBanner";
 import PostComments from "components/blog/post-comments";
@@ -19,7 +18,6 @@ const PostPage = ({ pageData }) => {
   return (
     <>
       <PageTitleBanner pageName={page?.title} title={page?.title} />
-
       <div className="section-padding">
         <div className="container">
           <div className="row justify-content-between">
@@ -34,7 +32,7 @@ const PostPage = ({ pageData }) => {
                     date={page?.publishedAt}
                   />
                   {/* ========== MAIN CONTENT START ========== */}
-                  <PortableText modules={page?.rteBody} />
+                  <ProsableText value={page?.rteBody} />
                   {/* <h4 className="post_title">
                     <Link href="/blog-details">
                       Writing Multiplayer Text Adventure Engine In Node Game

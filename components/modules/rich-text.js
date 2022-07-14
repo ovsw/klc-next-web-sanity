@@ -1,5 +1,4 @@
 import Link from "next/link";
-import PostBodyRte from "components/body-rte";
 
 const PostBody = ({ blok }) => {
   return (
@@ -7,7 +6,7 @@ const PostBody = ({ blok }) => {
       <div className="container">
         <div className="row justify-content-between">
           <div className="col-lg-8 mb-md-80">
-            <PostBodyRte />
+            <p>POST CONTENT GOES HERE</p>
           </div>
 
           {/* SIDEBAR START */}

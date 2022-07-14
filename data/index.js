@@ -10,7 +10,7 @@ import * as queries from "./queries";
 // Fetch all dynamic docs
 export async function getAllDocSlugs(doc) {
   const data = await getClient().fetch(
-    `*[_type == "${doc}" && !(_id in [${queries.homeID}, ${queries.shopID}, ${queries.errorID}]) && wasDeleted != true && isDraft != true]{ "slug": slug.current }`
+    `*[_type == "${doc}" && !(_id in [${queries.homeID}, ${queries.shopID}, ${queries.errorID}, ${queries.journeyID}]) && wasDeleted != true && isDraft != true]{ "slug": slug.current }`
   );
   return data;
 }
@@ -77,59 +77,59 @@ export async function getPage(slug, preview) {
 }
 
 // Fetch a specific product with our global data
-export async function getProduct(slug, preview) {
-  const query = `
-    {
-      "page": *[_type == "product" && slug.current == "${slug}" && wasDeleted != true && isDraft != true] | order(_updatedAt desc)[0]{
-        "id": _id,
-        hasTransparentHeader,
-        modules[]{
-          defined(_ref) => { ...@->content[0] {
-            ${queries.modules}
-          }},
-          !defined(_ref) => {
-            ${queries.modules},
-          }
-        },
-        "product": ${queries.product},
-        title,
-        seo
-      },
-      ${queries.site}
-    }
-  `;
+// export async function getProduct(slug, preview) {
+//   const query = `
+//     {
+//       "page": *[_type == "product" && slug.current == "${slug}" && wasDeleted != true && isDraft != true] | order(_updatedAt desc)[0]{
+//         "id": _id,
+//         hasTransparentHeader,
+//         modules[]{
+//           defined(_ref) => { ...@->content[0] {
+//             ${queries.modules}
+//           }},
+//           !defined(_ref) => {
+//             ${queries.modules},
+//           }
+//         },
+//         "product": ${queries.product},
+//         title,
+//         seo
+//       },
+//       ${queries.site}
+//     }
+//   `;
 
-  const data = await getClient(preview).fetch(query);
+//   const data = await getClient(preview).fetch(query);
 
-  return data;
-}
+//   return data;
+// }
 
 // Fetch a specific collection with our global data
-export async function getCollection(slug, preview) {
-  const query = `
-    {
-      "page": *[_type == "collection" && slug.current == "${slug}"] | order(_updatedAt desc)[0]{
-        "id": _id,
-        hasTransparentHeader,
-        modules[]{
-          defined(_ref) => { ...@->content[0] {
-            ${queries.modules}
-          }},
-          !defined(_ref) => {
-            ${queries.modules},
-          }
-        },
-        products[wasDeleted != true && isDraft != true]->${queries.product},
-        title,
-        seo
-      },
-      ${queries.site}
-    }
-  `;
+// export async function getCollection(slug, preview) {
+//   const query = `
+//     {
+//       "page": *[_type == "collection" && slug.current == "${slug}"] | order(_updatedAt desc)[0]{
+//         "id": _id,
+//         hasTransparentHeader,
+//         modules[]{
+//           defined(_ref) => { ...@->content[0] {
+//             ${queries.modules}
+//           }},
+//           !defined(_ref) => {
+//             ${queries.modules},
+//           }
+//         },
+//         products[wasDeleted != true && isDraft != true]->${queries.product},
+//         title,
+//         seo
+//       },
+//       ${queries.site}
+//     }
+//   `;
 
-  const data = await getClient(preview).fetch(query);
+//   const data = await getClient(preview).fetch(query);
 
-  return data;
-}
+//   return data;
+// }
 
 export { queries };

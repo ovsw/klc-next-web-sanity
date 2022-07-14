@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Page = ({ page, children }) => {
-  console.log("page", page);
+  // console.log("page", page);
 
   // will hold all related posts from all related item pages (might contain duplicates)
   let allPostsFromItemsPpages = [];

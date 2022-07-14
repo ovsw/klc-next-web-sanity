@@ -5,6 +5,7 @@ export const homeID = groq`*[_type=="generalSettings"][0].home->_id`;
 export const homeSlug = groq`*[_type=="generalSettings"][0].home->slug.current`;
 export const shopID = groq`*[_type=="generalSettings"][0].shop->_id`;
 export const errorID = groq`*[_type=="generalSettings"][0].error->_id`;
+export const journeyID = groq`*[_type=="generalSettings"][0].journey->_id`;
 
 // Construct our "page" GROQ
 const page = groq`

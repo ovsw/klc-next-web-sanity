@@ -12,7 +12,7 @@ export const blockSerializers = {
             <blockquote cite={url}>{text}</blockquote>
             {author && <figcaption>{author}</figcaption>}
           </figure> */}
-          <blockquote>
+          <blockquote className="my-5">
             <h4 className="quote_title">
               {/* “ */}
               {text}

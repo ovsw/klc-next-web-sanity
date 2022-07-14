@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Page = ({ page, children }) => {
-  console.log("page", page);
+  // console.log("page", page);
   return (
     <>
       <h1>Journey Item Page: {page.title}</h1> {children}
