@@ -98,3 +98,45 @@ export const rootPageQuery = groq`
       ${site}
     }
   `;
+
+//  for /the-journey/[...slug]
+export const journeyStepPageQuery = groq`
+    {
+      "page": *[_type == "pageJourneyStep" && slug.current in $slugVariations] | order(_updatedAt desc)[0]{
+        "id": _id,
+        _type,
+        hasTransparentHeader,
+        title,
+        seo,
+        // ============= page specific fields =============
+        stepItemsRefsArr[]->{
+          "slug": slug.current,
+          title,
+          "journeyItemPosts": tag->{
+              "posts": *[_type == "post" && references(^._id) && defined(slug)]
+              {title, "slug": slug.current, publishedAt}
+              | order(publishedAt desc)
+          },
+        },
+      },
+      ${site}
+    }
+  `;
+export const journeyItemPageQuery = groq`
+    {
+      "page": *[_type == "pageJourneyItem" && slug.current in $slugVariations] | order(_updatedAt desc)[0]{
+        "id": _id,
+        _type,
+        hasTransparentHeader,
+        title,
+        seo,
+        // ============= posts related to this journey item page =============
+        "journeyItemPosts": tag->{
+          "posts": *[_type == "post" && references(^._id) && defined(slug)]
+              {title, "slug": slug.current, publishedAt} 
+              | order(publishedAt desc),
+        },
+      },
+      ${site}
+    }
+  `;

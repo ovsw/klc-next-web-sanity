@@ -14,6 +14,17 @@ export async function getAllDocSlugs(doc) {
   );
   return data;
 }
+// specialized function to get journey "step" & "item" child pages pages with relations between them
+export async function getJourneyDocSlugs() {
+  const data = await getClient().fetch(
+    groq`*[ _type == "pageJourneyStep" && defined(slug.current)]{
+      _type,
+      "slug": slug.current,
+      stepItemsRefsArr[]->{"slug": slug.current , title},
+    }`
+  );
+  return data;
+}
 
 // Fetch all our page redirects
 export async function getAllRedirects() {
