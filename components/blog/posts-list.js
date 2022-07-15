@@ -5,9 +5,13 @@ const PostList = ({
   title = "[title here]",
   showEyeBrow = true,
   eyebrowText = "News & Blog",
+  topPaddingSmall = false,
 }) => {
   return (
-    <section className="section-padding">
+    <section
+      className="section-padding"
+      style={{ paddingTop: topPaddingSmall ? "60px" : "120px" }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-12">

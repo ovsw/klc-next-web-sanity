@@ -21,6 +21,7 @@ const Page = ({ page }) => {
       <JourneyItemGrid
         items={stepItemsRefsArr}
         pathPrefix={currentStepPagePath}
+        topPaddingSmall={true}
       />
 
       {/* =========== RELATED POSTS =========== */}
@@ -28,6 +29,7 @@ const Page = ({ page }) => {
         title="Related Blog Posts"
         posts={uniquePostList}
         eyebrowText={page.title}
+        topPaddingSmall={true}
       />
     </>
   );
