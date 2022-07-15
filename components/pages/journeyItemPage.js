@@ -1,23 +1,25 @@
 import React from "react";
 import Link from "next/link";
+import { Module } from "components/modules";
+import PostList from "components/blog/posts-list";
 
-const Page = ({ page, children }) => {
+const Page = ({ page }) => {
   // console.log("page", page);
   return (
     <>
-      <h1>Journey Item Page: {page.title}</h1> {children}
-      {page.journeyItemPosts.posts.map((post, i) => {
-        return (
-          <li key={i}>
-            <Link href={`/${post.slug}`}>
-              <a>
-                {post.title} - {new Date(post.publishedAt).toLocaleString()} -{" "}
-                {post.slug}
-              </a>
-            </Link>
-          </li>
-        );
-      })}
+      {/* <h1>Journey Item Page: {page.title}</h1> {children} */}
+      {/* ===========  MODULES =========== */}
+      {page.modules != null &&
+        page.modules.map((module, key) => {
+          return <Module key={key} index={key} module={module} />;
+        })}
+
+      {/* =========== RELATED POSTS =========== */}
+      <PostList
+        title="Related Blog Posts"
+        posts={page.journeyItemPosts.posts}
+        eyebrowText={page.title}
+      />
     </>
   );
 };

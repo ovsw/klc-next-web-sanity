@@ -109,9 +109,18 @@ export const journeyStepPageQuery = groq`
         title,
         seo,
         // ============= page specific fields =============
+        modules[]{
+          defined(_ref) => { ...@->content[0] {
+              ${modules}
+          }},
+          !defined(_ref) => {
+              ${modules},
+          }
+        },
         stepItemsRefsArr[]->{
           "slug": slug.current,
           title,
+          icon,
           "journeyItemPosts": tag->{
               "posts": *[_type == "post" && references(^._id) && defined(slug)]
               {title, "slug": slug.current, publishedAt}
@@ -131,6 +140,15 @@ export const journeyItemPageQuery = groq`
         title,
         seo,
         // ============= posts related to this journey item page =============
+        modules[]{
+          defined(_ref) => { ...@->content[0] {
+              ${modules}
+          }},
+          !defined(_ref) => {
+              ${modules},
+          }
+        },
+        icon,
         "journeyItemPosts": tag->{
           "posts": *[_type == "post" && references(^._id) && defined(slug)]
               {title, "slug": slug.current, publishedAt} 

@@ -21,8 +21,8 @@ export default function Page({ data, preview }) {
     enabled: preview,
   });
 
-  console.log("PREVIEW", preview);
-  console.log("DATA", pageData);
+  // console.log("PREVIEW", preview);
+  // console.log("DATA", pageData);
 
   return (
     <>
@@ -41,14 +41,14 @@ export default function Page({ data, preview }) {
       <hr />
       {JSON.stringify(props.page.stepItemsRefsArr)} */}
 
-      <h1>{pageData.page.title}</h1>
+      {/* <h1>{pageData.page._type}</h1> */}
 
       {/* ================================== */}
-      {/* {props.page._type === "pageJourneyStep" ? (
-        <JourneyStepPage page={props.page} />
+      {pageData.page._type === "pageJourneyStep" ? (
+        <JourneyStepPage page={pageData.page} />
       ) : (
-        <JourneyItemPage page={props.page} />
-      )} */}
+        <JourneyItemPage page={pageData.page} />
+      )}
     </>
   );
 }

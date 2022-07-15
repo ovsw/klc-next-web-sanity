@@ -9,6 +9,8 @@ const About = dynamic(() => import("./about"));
 const Program = dynamic(() => import("./program"));
 const Testimonials = dynamic(() => import("./testimonials"));
 const Cta = dynamic(() => import("./cta"));
+const TitleBanner = dynamic(() => import("./banner-title"));
+const RichText = dynamic(() => import("./rich-text"));
 
 export const Module = ({ index, module }) => {
   // console.log({ module });
@@ -16,9 +18,9 @@ export const Module = ({ index, module }) => {
     case "hero":
       return <Hero key={index} data={module} />;
     case "topBanner":
-      return <p>aaa</p>;
+      return <TitleBanner key={index} data={module} />;
     case "richText":
-      return <p>richText</p>;
+      return <RichText key={index} data={module} />;
     case "steps":
       return <Steps key={index} data={module} />;
     case "pricing":
