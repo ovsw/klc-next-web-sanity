@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { stickyNav } from "src/utils";
-// import { DefaultHeadActions, HeadActions } from "./HeadActions";
-import HeaderSidebar from "./headerSidebar";
-import HeaderTop from "./headerTop";
+import { stickyNav } from "../utils";
+import { DefaultHeadActions, HeadActions } from "./HeadActions";
+import HeaderSidebar from "./HeaderSidebar";
+import HeaderTop from "./HeaderTop";
+
+import Image from "next/image";
 import {
   BlogMenu,
   CoursesMenu,
   HomeMenu,
   PageMenu,
   PortfolioMenu,
-} from "./menu";
-// import SearchTrigger from "./SearchTrigger";
+} from "./nav-menu";
+import SearchTrigger from "./SearchTrigger";
 
 const Header = ({
   openMobileMenu,
@@ -47,11 +49,18 @@ const Header = ({
                 {/* logo start */}
                 <div className="logo">
                   <Link href="/">
-                    <a>
-                      <img
+                    <a style={{ position: "relative", top: "5px" }}>
+                      {/* <img
                         src="/assets/images/logo.png"
                         alt="logo"
                         className="image-fit"
+                      /> */}
+                      <Image
+                        src="/assets/images/logo.png"
+                        alt="logo"
+                        className="image-fit"
+                        width={140}
+                        height={35}
                       />
                     </a>
                   </Link>
@@ -69,7 +78,7 @@ const Header = ({
                     </ul>
                   </li> */}
                   <li className="menu-item">
-                    <Link href="/my-process">My Process</Link>
+                    <Link href="/my-process">My Processs</Link>
                   </li>
                   {/* <li className="menu-item menu-item-has-children">
                     <a href="#">Services</a>

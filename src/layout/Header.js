@@ -4,6 +4,7 @@ import { stickyNav } from "../utils";
 import { DefaultHeadActions, HeadActions } from "./HeadActions";
 import HeaderSidebar from "./HeaderSidebar";
 import HeaderTop from "./HeaderTop";
+import Image from "next/image";
 import {
   BlogMenu,
   CoursesMenu,
@@ -47,11 +48,18 @@ const Header = ({
                 {/* logo start */}
                 <div className="logo">
                   <Link href="/">
-                    <a>
-                      <img
+                    <a style={{ position: "relative", top: "5px" }}>
+                      {/* <img
                         src="/assets/images/logo.png"
                         alt="logo"
                         className="image-fit"
+                      /> */}
+                      <Image
+                        src="/assets/images/logo.png"
+                        alt="logo"
+                        className="image-fit"
+                        width={140}
+                        height={35}
                       />
                     </a>
                   </Link>

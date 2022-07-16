@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   BlogMenu,
   CoursesMenu,
   HomeMenu,
   PageMenu,
   PortfolioMenu,
-} from "./menu";
+  JourneyMenu,
+} from "./nav-menu";
 
 const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState("");
@@ -14,7 +15,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const activeLi = (name) =>
     name === activeMenu ? { display: "block" } : { display: "none" };
   return (
-    <>
+    <Fragment>
       <aside
         className={`aside_bar aside_bar_left aside_mobile ${
           showMobileMenu ? "open" : ""
@@ -23,7 +24,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
         {/* logo */}
         <Link href="/">
           <a className="logo">
-            <img src="/assets/images/logo.png" alt="logo" />
+            <img src="assets/images/logo.png" alt="logo" />
           </a>
         </Link>
         {/* logo */}
@@ -31,49 +32,45 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
         <nav>
           <ul className="main-menu">
             <li className="menu-item">
-              <Link href="/">Home</Link>
-            </li>
-            {/* <li className="menu-item menu-item-has-children">
-                    <a href="#">Home</a>
-                    <ul className="sub-menu">
-                      <HomeMenu />
-                    </ul>
-                  </li> */}
-            <li className="menu-item">
-              <Link href="/">My Process</Link>
+              <a href="/">Home</a>
+              {/* <ul className="sub-menu" style={activeLi("Home")}>
+                <HomeMenu />
+              </ul> */}
             </li>
             <li className="menu-item menu-item-has-children">
-              <a href="#">Services</a>
-              <ul className="sub-menu">
-                <PageMenu />
+              <a href="#" onClick={() => activeFun("Journey")}>
+                The Journey
+              </a>
+              <ul className="sub-menu" style={activeLi("Journey")}>
+                <JourneyMenu />
               </ul>
             </li>
-            <li className="menu-item">
-              <Link href="/">Pricing</Link>
+            <li className="menu-item ">
+              <a href="#" onClick={() => activeFun("Courses")}>
+                About Me
+              </a>
+              {/* <ul className="sub-menu" style={activeLi("Courses")}>
+                <CoursesMenu />
+              </ul> */}
             </li>
-            {/* <li className="menu-item menu-item-has-children">
-                    <a href="#">Courses</a>
-                    <ul className="sub-menu">
-                      <CoursesMenu />
-                    </ul>
-                  </li> */}
             <li className="menu-item menu-item-has-children">
-              <a href="#">Blog</a>
-              <ul className="sub-menu">
+              <a href="#" onClick={() => activeFun("Blog")}>
+                Blog
+              </a>
+              <ul className="sub-menu" style={activeLi("Blog")}>
                 <BlogMenu />
               </ul>
             </li>
-            <li className="menu-item">
-              <Link href="/">About Me</Link>
+            <li className="menu-item ">
+              <a href="#" onClick={() => activeFun("Portfolio")}>
+                Pricing
+              </a>
+              {/* <ul className="sub-menu" style={activeLi("Portfolio")}>
+                <PortfolioMenu />
+              </ul> */}
             </li>
-            {/* <li className="menu-item menu-item-has-children">
-                    <a href="#">Portfolio</a>
-                    <ul className="sub-menu">
-                      <PortfolioMenu />
-                    </ul>
-                  </li> */}
             <li className="menu-item">
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact">Contacts</Link>
             </li>
           </ul>
         </nav>
@@ -83,7 +80,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
         className="aside-overlay trigger-left"
         onClick={() => closeMobileMenu()}
       ></div>
-    </>
+    </Fragment>
   );
 };
 

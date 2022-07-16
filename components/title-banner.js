@@ -1,13 +1,23 @@
 import Link from "next/link";
 import Breadcrumbs from "components/breadcrumbs";
+import Image from "next/image";
 
 const PageTitleBanner = ({ title = "[title]", pageName = "[page name]" }) => {
   return (
     <div
       className="subheader relative z-1"
-      style={{ backgroundImage: "url(/assets/images/subheader.jpg)" }}
+      // style={{ backgroundImage: "url(/assets/images/subheader.jpg)" }}
+      // style={{ display: "block" }}
     >
-      <div className="container relative z-1">
+      <Image
+        priority={true}
+        src="/assets/images/subheader.jpg"
+        alt="subheader"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center left"
+      />
+      <div className="container relative z-2">
         <div className="row">
           <div className="col-12">
             <h1 className="page_title">{title}</h1>

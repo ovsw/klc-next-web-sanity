@@ -22,9 +22,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
       >
         {/* logo */}
         <Link href="/">
-          <a className="logo">
-            <img src="/assets/images/logo.png" alt="logo" />
-          </a>
+          <a className="logo"></a>
         </Link>
         {/* logo */}
         {/* Menu */}

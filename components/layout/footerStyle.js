@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const Footer1 = () => (
   <footer className="footer">
@@ -133,16 +134,23 @@ export const Footer2 = () => (
     className="footer bg-thm-color-two-gradient style_2 z-1"
     style={{ backgroundImage: "url(/assets/images/elements/element_15.png)" }}
   >
-    <img
-      src="/assets/images/elements/element_13_customized.png"
-      className="element_1"
-      alt="Element"
-    />
-    <img
-      src="/assets/images/elements/element_14.png"
-      className="element_2"
-      alt="Element"
-    />
+    <div className="element_1">
+      <Image
+        src="/assets/images/elements/element_13_customized.png"
+        width={332}
+        height={320}
+        alt="Element"
+      />
+    </div>
+    <div className="element_2">
+      <Image
+        src="/assets/images/elements/element_14.png"
+        width={377}
+        height={380}
+        alt="Element"
+        // layout="fill"
+      />
+    </div>
     <div className="container relative z-1">
       <div className="footer_top section-padding">
         <div className="row">
@@ -150,10 +158,12 @@ export const Footer2 = () => (
             <div className="ft_widget ft_about wow fadeInDown">
               <Link href="/index">
                 <a className="logo">
-                  <img
+                  <Image
                     src="/assets/images/logo.png"
                     alt="logo"
                     className="image-fit"
+                    width={140}
+                    height={35}
                   />
                 </a>
               </Link>

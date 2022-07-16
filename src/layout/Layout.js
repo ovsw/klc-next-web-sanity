@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { animation, aTagClick, pieChart, scrollTop } from "../utils";
 import Footer from "./Footer";
 import Header from "./Header";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "components/layout/MobileMenu";
 import ScrollTop from "./ScrollTop";
 
 const Layout = ({

@@ -31,6 +31,9 @@ const iconTypes = {
 };
 
 const IconComponent = ({ name, ...props }) => {
+  if (!iconTypes[name]) {
+    return null;
+  }
   let Icon = iconTypes[name];
   return <Icon {...props} />;
 };
