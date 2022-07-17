@@ -8,6 +8,7 @@ import HeaderTop from "./HeaderTop";
 import Image from "next/image";
 import {
   BlogMenu,
+  JourneyMenu,
   CoursesMenu,
   HomeMenu,
   PageMenu,
@@ -77,14 +78,14 @@ const Header = ({
                       <HomeMenu />
                     </ul>
                   </li> */}
-                  <li className="menu-item">
-                    <Link href="/my-process">My Processs</Link>
-                  </li>
-                  {/* <li className="menu-item menu-item-has-children">
-                    <a href="#">Services</a>
+                  <li className="menu-item menu-item-has-children">
+                    <Link href="/the-journey">The Journey</Link>
                     <ul className="sub-menu">
-                      <PageMenu />
+                      <JourneyMenu />
                     </ul>
+                  </li>
+                  {/* <li className="menu-item ">
+                    <a href="#">Services</a>
                   </li> */}
                   <li className="menu-item">
                     <Link href="/pricing">Pricing</Link>

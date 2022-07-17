@@ -1399,7 +1399,7 @@ blockquote .quote_author:before {
 }
 
 .menu-item-has-children>.sub-menu>li.menu-item>a {
-    display: block;
+    display: flex;
     padding: 12px;
     font-size: 18px;
     font-weight: 400!important;

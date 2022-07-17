@@ -57,3 +57,9 @@ html {
   padding: 0;
   margin: 0;
 }
+
+@media screen and (min-width: 991px) {
+  ul.main-menu > li.menu-item-has-children > ul.sub-menu {
+    padding: 5px !important;
+  }
+}
