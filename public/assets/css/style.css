@@ -1401,7 +1401,7 @@ blockquote .quote_author:before {
 .menu-item-has-children>.sub-menu>li.menu-item>a {
     display: flex;
     padding: 12px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400!important;
     transition: 0.5s;
     white-space: nowrap;
