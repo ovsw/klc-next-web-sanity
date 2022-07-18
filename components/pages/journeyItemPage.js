@@ -5,21 +5,27 @@ import PostList from "components/blog/posts-list";
 
 const Page = ({ page }) => {
   // console.log("page", page);
+  const {
+    title = "[missing page title]",
+    modules = [],
+    journeyItemPosts = [],
+  } = page;
   return (
     <>
       {/* <h1>Journey Item Page: {page.title}</h1> {children} */}
       {/* ===========  MODULES =========== */}
-      {page.modules != null &&
-        page.modules.map((module, key) => {
-          return <Module key={key} index={key} module={module} />;
-        })}
+      {page.modules.map((module, key) => {
+        return <Module key={key} index={key} module={module} />;
+      })}
 
       {/* =========== RELATED POSTS =========== */}
-      <PostList
-        title="Related Blog Posts"
-        posts={page.journeyItemPosts.posts}
-        eyebrowText={page.title}
-      />
+      {journeyItemPosts.length > 0 && (
+        <PostList
+          title="Related Blog Posts"
+          posts={page.journeyItemPosts.posts}
+          eyebrowText={page.title}
+        />
+      )}
     </>
   );
 };

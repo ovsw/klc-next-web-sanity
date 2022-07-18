@@ -158,3 +158,21 @@ export const journeyItemPageQuery = groq`
       ${site}
     }
   `;
+
+//  for tags/[...slug]
+export const tagPageQuery = groq`
+    {
+      "page": *[_type == "tag" && slug.current in $slugVariations] | order(_updatedAt desc)[0]{
+        "id": _id,
+        _type,
+        hasTransparentHeader,
+        title,
+        seo,
+        // ============= tag page specific fields =============        
+        "relatedPosts": *[_type == "post" && references(^._id) && defined(slug)]
+        {title, "slug": slug.current, publishedAt}
+        | order(publishedAt desc),
+      },
+      ${site}
+    }
+  `;

@@ -6,6 +6,7 @@ const PostList = ({
   showEyeBrow = true,
   eyebrowText = "News & Blog",
   topPaddingSmall = false,
+  emptyMesasage = <></>,
 }) => {
   return (
     <section
@@ -26,7 +27,9 @@ const PostList = ({
             </div>
           </div>
         </div>
+
         <div className="row">
+          {emptyMesasage}
           {posts?.map((post, i) => (
             <PostCard key={i} post={post} />
           ))}

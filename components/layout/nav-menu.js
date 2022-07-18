@@ -96,14 +96,14 @@ export const JourneyMenu = () => (
 export const BlogMenu = () => (
   <>
     <li className="menu-item">
-      <Link href="/tag/goal-setting">
+      <Link href="/tags/goal-setting">
         <a>
           <Icon name="FaCompass" size={"1.4em"} /> Goal Setting
         </a>
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/inspiration">
+      <Link href="/tags/inspiration">
         <a>
           <Icon name="FaSpa" size={"1.4em"} />
           Inspiration
@@ -111,7 +111,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/motivation">
+      <Link href="/tags/motivation">
         <a>
           <Icon name="FaMountain" size={"1.4em"} />
           Motivation
@@ -119,7 +119,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/finding-your-purpose">
+      <Link href="/tags/finding-your-purpose">
         <a>
           <Icon name="FaRoute" size={"1.4em"} />
           Finding your Purpose
@@ -127,7 +127,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/taking-responsibility">
+      <Link href="/tags/taking-responsibility">
         <a>
           <Icon name="FaUser" size={"1.4em"} />
           Taking Responsibility
@@ -135,7 +135,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/staying-safe">
+      <Link href="/tags/staying-safe">
         <a>
           <Icon name="FaShieldAlt" size={"1.4em"} />
           Staying Safe
@@ -143,7 +143,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/journaling">
+      <Link href="/tags/journaling">
         <a>
           <Icon name="FaFeatherAlt" size={"1.4em"} />
           Journaling
@@ -151,7 +151,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/physical-fitness">
+      <Link href="/tags/physical-fitness">
         <a>
           <Icon name="FaRunning" size={"1.4em"} />
           Physical Fitness
@@ -159,7 +159,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/building-confidence">
+      <Link href="/tags/building-confidence">
         <a>
           <Icon name="FaFlag" size={"1.4em"} />
           Building Confidence
@@ -167,7 +167,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/milestones">
+      <Link href="/tags/milestones">
         <a>
           <Icon name="FaMapMarkerAlt" size={"1.4em"} />
           Milestones
@@ -175,7 +175,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/social-success">
+      <Link href="/tags/social-success">
         <a>
           <Icon name="FaStar" size={"1.4em"} />
           Social Success
@@ -183,7 +183,7 @@ export const BlogMenu = () => (
       </Link>
     </li>
     <li className="menu-item">
-      <Link href="/tag/working-with-others">
+      <Link href="/tags/working-with-others">
         <a>
           <Icon name="FaUsers" size={"1.4em"} />
           Working with Others
