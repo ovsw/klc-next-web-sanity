@@ -151,7 +151,7 @@ const Header = ({
                 <div className="head_actions">
                   {/* <HeadActions setOpenSidebar={setOpenSidebar} /> */}
                   <a
-                    className="thm-btn btn-small bg-thm-color-two thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+                    className="thm-btn btn-small bg-thm-color-two thm-color-two-shadow btn-rounded mr-4 mb-2 wow fadeInRight"
                     data-wow-delay=".50ms"
                   >
                     Schedule Free Call{" "}
