@@ -71,7 +71,7 @@ export const PortfolioMenu = () => (
 export const JourneyMenu = () => (
   <>
     <li className="menu-item">
-      <Link href="/the-journey/planning-your-journey">Overview</Link>
+      <Link href="/the-journey">Overview</Link>
     </li>
     <li className="menu-item">
       <Link href="/the-journey/planning-your-journey">
