@@ -23,6 +23,11 @@ export const modules = groq`
         "posts": *[_type == "post"][0...3] {
             ...,
         } | order(publishedAt desc)
+    },
+    _type == "allPosts" => {
+        "posts": *[_type == "post"] {
+            ...,
+        } | order(publishedAt desc)
     }
 `;
 

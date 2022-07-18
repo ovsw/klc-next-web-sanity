@@ -11,6 +11,7 @@ const Testimonials = dynamic(() => import("./testimonials"));
 const Cta = dynamic(() => import("./cta"));
 const TitleBanner = dynamic(() => import("./banner-title"));
 const RichText = dynamic(() => import("./rich-text"));
+const AllPosts = dynamic(() => import("./all-posts"));
 
 export const Module = ({ index, module }) => {
   // console.log({ module });
@@ -31,6 +32,8 @@ export const Module = ({ index, module }) => {
       return <Cta key={index} data={module} />;
     case "latestPosts":
       return <RecentPosts key={index} data={module} />;
+    case "allPosts":
+      return <AllPosts key={index} data={module} />;
     case "about":
       return <About key={index} data={module} />;
     case "program":

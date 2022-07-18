@@ -12,9 +12,9 @@ import PostTagsAndShare from "components/blog/post-tag-share";
 import PostMetaHeader from "components/blog/post-meta";
 import PostImage from "components/blog/post-image";
 
-const PostPage = ({ pageData }) => {
+const PostPage = ({ data }) => {
   // console.log("BLOG PAGE DATA:", pageData);
-  const { page, site } = pageData;
+  const { page, site } = data;
   return (
     <>
       <PageTitleBanner pageName={page?.title} title={page?.title} />

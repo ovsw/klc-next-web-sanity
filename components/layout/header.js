@@ -97,7 +97,7 @@ const Header = ({
                     </ul>
                   </li> */}
                   <li className="menu-item menu-item-has-children">
-                    <a href="#">Blog</a>
+                    <a href="/blog">Blog</a>
                     <ul className="sub-menu">
                       <BlogMenu />
                     </ul>

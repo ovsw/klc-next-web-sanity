@@ -50,9 +50,9 @@ export default function Page({ data, preview }) {
       </p> */}
 
       {pageData?.page?._type === "page" ? (
-        <GenericPage pageData={pageData} />
+        <GenericPage page={pageData.page} />
       ) : (
-        <PostPage pageData={pageData} />
+        <PostPage data={pageData} />
       )}
     </>
   );
