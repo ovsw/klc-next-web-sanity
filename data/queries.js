@@ -7,6 +7,16 @@ export const shopID = groq`*[_type=="generalSettings"][0].shop->_id`;
 export const errorID = groq`*[_type=="generalSettings"][0].error->_id`;
 export const journeyID = groq`*[_type=="generalSettings"][0].journey->_id`;
 
+export const rteBodyWithImageAltFromLibrary = groq`
+  rteBody[] {
+    ...,
+    _type == "image" => {
+      ...,
+      "mediaAlt": asset->altText
+    }
+  },
+  `;
+
 // Construct our "page" GROQ
 const page = groq`
   "type": _type,
@@ -18,6 +28,10 @@ const page = groq`
 // Construct our "modules" GROQ
 export const modules = groq`
     ...,
+    type == "richText" => {
+      ...,
+      ${rteBodyWithImageAltFromLibrary}
+    },
     _type == "latestPosts" => {
        
         "posts": *[_type == "post"][0...3] {
@@ -90,7 +104,7 @@ export const rootPageQuery = groq`
           categories[]->{title, slug, journeyItemRef->{title, slug}},
           mainImage,
           publishedAt,
-          rteBody,
+          ${rteBodyWithImageAltFromLibrary}
           author->{name, slug},
           'previousPost': *[_type == 'post' && publishedAt < ^.publishedAt] 
             | order(publishedAt desc)[0]

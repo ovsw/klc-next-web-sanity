@@ -13,17 +13,17 @@ const SampleImageComponent = ({ value, isInline }) => {
           .fit("max")
           .auto("format")
           .url()}
-        alt={value.alt || " "}
+        alt={value.alt || value.mediaAlt || " "}
         width={width}
         height={height}
         loading="lazy"
-        style={{
-          // Display alongside text if image appears inside a block text span
-          display: isInline ? "inline-block" : "block",
+        // style={{
+        //   // Display alongside text if image appears inside a block text span
+        //   display: isInline ? "inline-block" : "block",
 
-          // Avoid jumping around with aspect-ratio CSS property
-          aspectRatio: width / height,
-        }}
+        //   // Avoid jumping around with aspect-ratio CSS property
+        //   aspectRatio: width / height,
+        // }}
       />
     </div>
   );
