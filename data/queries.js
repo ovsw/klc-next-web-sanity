@@ -7,6 +7,7 @@ export const shopID = groq`*[_type=="generalSettings"][0].shop->_id`;
 export const errorID = groq`*[_type=="generalSettings"][0].error->_id`;
 export const journeyID = groq`*[_type=="generalSettings"][0].journey->_id`;
 
+// get the alt attribute specified in the Media Library when fetching images inside portable text field
 export const rteBodyWithImageAltFromLibrary = groq`
   rteBody[] {
     ...,
@@ -47,7 +48,18 @@ export const modules = groq`
 
 // constuct our "post summary" GROQ
 const postSummaryFields = groq`
-  {title, publishedAt, mainImage, slug}
+  {
+    title, 
+    publishedAt, 
+    mainImage {
+      ...,
+      image {
+       ...,
+       "mediaAlt": asset->altText
+      }
+    }, 
+    "slug": slug.current
+  }
 `;
 
 // Construct our "site" GROQ
@@ -142,7 +154,7 @@ export const journeyStepPageQuery = groq`
           icon,
           "journeyItemPosts": tag->{
               "posts": *[_type == "post" && references(^._id) && defined(slug)]
-              {title, "slug": slug.current, publishedAt}
+              ${postSummaryFields}
               | order(publishedAt desc)
           },
         },
@@ -170,7 +182,7 @@ export const journeyItemPageQuery = groq`
         icon,
         "journeyItemPosts": tag->{
           "posts": *[_type == "post" && references(^._id) && defined(slug)]
-              {title, "slug": slug.current, publishedAt} 
+              ${postSummaryFields} 
               | order(publishedAt desc),
         },
       },
@@ -189,7 +201,7 @@ export const tagPageQuery = groq`
         seo,
         // ============= tag page specific fields =============        
         "relatedPosts": *[_type == "post" && references(^._id) && defined(slug)]
-        {title, "slug": slug.current, publishedAt}
+        ${postSummaryFields}
         | order(publishedAt desc),
       },
       ${site}
