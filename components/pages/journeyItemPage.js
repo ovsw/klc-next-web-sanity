@@ -4,7 +4,7 @@ import { Module } from "components/modules";
 import PostList from "components/blog/posts-list";
 
 const Page = ({ page }) => {
-  // console.log("page", page);
+  console.log("page", page.journeyItemPosts);
   const {
     title = "[missing page title]",
     modules = [],
@@ -19,7 +19,7 @@ const Page = ({ page }) => {
       })}
 
       {/* =========== RELATED POSTS =========== */}
-      {journeyItemPosts.length > 0 && (
+      {journeyItemPosts.posts.length > 0 && (
         <PostList
           title="Related Blog Posts"
           posts={page.journeyItemPosts.posts}

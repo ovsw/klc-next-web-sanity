@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getImageDimensions } from "@sanity/asset-utils";
 
 const PostCard = ({ post }) => {
-  // console.log("post from post card", urlFor(post.mainImage?.image).url());
+  // console.log("post from post card", post);
   return (
     <div className="col-xl-4 col-md-6">
       <article className="post style_2 wow fadeInDown" data-wow-delay=".20ms">
@@ -16,9 +16,18 @@ const PostCard = ({ post }) => {
               .fit("crop")
               .auto("format")
               .url()}
-            alt={post.mainImage.image.asset.alt || " "}
+            alt={post.mainImage.alt || post.mainImage.image.mediaAlt || " "}
             className="image-fit"
             layout="fill"
+            placeholder="blur"
+            // blurDataURL={urlFor(post.mainImage.image)
+            //   .width(20)
+            //   .height(20)
+            //   .fit("crop")
+            //   .auto("format")
+            //   .blur(30)
+            //   .url()}
+            blurDataURL={post.mainImage.image.lqip}
           />
         </div>
         <div className="post_caption">

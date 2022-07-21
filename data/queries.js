@@ -13,7 +13,8 @@ export const rteBodyWithImageAltFromLibrary = groq`
     ...,
     _type == "image" => {
       ...,
-      "mediaAlt": asset->altText
+      "mediaAlt": asset->altText,
+      "lqip": asset->metadata.lqip
     }
   },
   `;
@@ -26,26 +27,6 @@ const page = groq`
   "isShop": _id == ${shopID}
 `;
 
-// Construct our "modules" GROQ
-export const modules = groq`
-    ...,
-    type == "richText" => {
-      ...,
-      ${rteBodyWithImageAltFromLibrary}
-    },
-    _type == "latestPosts" => {
-       
-        "posts": *[_type == "post"][0...3] {
-            ...,
-        } | order(publishedAt desc)
-    },
-    _type == "allPosts" => {
-        "posts": *[_type == "post"] {
-            ...,
-        } | order(publishedAt desc)
-    }
-`;
-
 // constuct our "post summary" GROQ
 const postSummaryFields = groq`
   {
@@ -55,11 +36,28 @@ const postSummaryFields = groq`
       ...,
       image {
        ...,
-       "mediaAlt": asset->altText
+       "mediaAlt": asset->altText,
+       "lqip": asset->metadata.lqip
       }
     }, 
     "slug": slug.current
   }
+`;
+
+// Construct our "modules" GROQ
+export const modules = groq`
+    ...,
+    type == "richText" => {
+      ...,
+      ${rteBodyWithImageAltFromLibrary}
+    },
+    _type == "latestPosts" => {
+       
+        "posts": *[_type == "post"][0...3] ${postSummaryFields} | order(publishedAt desc)
+    },
+    _type == "allPosts" => {
+        "posts": *[_type == "post"] ${postSummaryFields} | order(publishedAt desc)
+    }
 `;
 
 // Construct our "site" GROQ
