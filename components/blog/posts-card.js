@@ -35,7 +35,12 @@ const PostCard = ({ post }) => {
             <li>
               <i className="fal fa-calendar-alt" />
               {/* 25 Mar 2021 */}
-              {post.publishedAt}
+              {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                // weekday: "long",
+                // year: "none",
+                month: "short",
+                day: "numeric",
+              })}
             </li>
             {/* <li>
                         <i className="fal fa-comment-lines" />

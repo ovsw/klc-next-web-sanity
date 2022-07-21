@@ -29,7 +29,15 @@ const PostPage = ({ data }) => {
                 <div className="post_caption">
                   <PostMetaHeader
                     author={page?.author.name}
-                    date={page?.publishedAt}
+                    date={new Date(page?.publishedAt).toLocaleDateString(
+                      "en-US",
+                      {
+                        // weekday: "long",
+                        // year: "none",
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
                   />
                   {/* ========== MAIN CONTENT START ========== */}
                   <ProsableText value={page?.rteBody} />

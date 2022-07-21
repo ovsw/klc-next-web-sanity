@@ -19,13 +19,20 @@ const PostsSummaryItem = ({ post, label = null }) => {
       </Link>
       <div className="text">
         <h6 className="mb-0">
-          <Link href={`/${post.slug?.current}`}>{post.title}</Link>
+          <Link href={`/${post.slug?.current || post.slug}`}>{post.title}</Link>
         </h6>
         <p className="mb-0">
           <strong>
             <i className="fal fa-calendar-alt" />{" "}
           </strong>
-          <Link href="/blog-grid">{post.publishedAt}</Link>
+          <Link href={`/${post.slug?.current || post.slug}`}>
+            {new Date(post.publishedAt).toLocaleDateString("en-US", {
+              // weekday: "long",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </Link>
         </p>
       </div>
     </li>
