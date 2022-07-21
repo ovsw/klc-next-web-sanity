@@ -24,7 +24,7 @@ const PostPage = ({ data }) => {
             <div className="col-lg-8 mb-md-80">
               {/* post details */}
               <article className="post post_list style_2 post_details mb-0 wow fadeInDown">
-                <PostImage />
+                <PostImage image={page.mainImage} />
 
                 <div className="post_caption">
                   <PostMetaHeader

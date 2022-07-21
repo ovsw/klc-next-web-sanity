@@ -112,7 +112,14 @@ export const rootPageQuery = groq`
          _type == "post" => {
           title,
           categories[]->{title, slug, journeyItemRef->{title, slug}},
-          mainImage,
+          mainImage {
+            ...,
+            image {
+            ...,
+            "mediaAlt": asset->altText,
+            "lqip": asset->metadata.lqip
+            }
+          },
           publishedAt,
           ${rteBodyWithImageAltFromLibrary}
           author->{name, slug},
