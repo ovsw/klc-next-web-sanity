@@ -12,7 +12,7 @@ const StepsCustom = ({ blok }) => {
                 <i className="fal fa-book" />
                 My 4 Step Framework for
               </p>
-              <h3 className="title">A customized Approach</h3>
+              <h3 className="title">The CLIMB Kids LIfe Coaching Journey</h3>
               {/* <p>
                 📆 &middot; 🗣 &middot; 📋 &middot; 🛑 &middot; 🏆 &middot; 📩
                 &middot; 📞
@@ -24,10 +24,17 @@ const StepsCustom = ({ blok }) => {
                 and phone 📞.
               </p> */}
               <p>
-                We meet weekly and discuss how you are doing according to your
-                plan and address any obstacles and blocks to your achievement.
-                Between meetings, we keep in touch by email and phone.
+                Great ready for an exhilarating climb to reach the top of your
+                mountain of success. We will help you find out what goals are
+                important to you and help you get prepared to reach the
+                milestones you have will set for your journey to climb your
+                personal mountain.
               </p>
+              {/* <p>
+                We’ll give you useful tools to make the climb achieve success,
+                and then guide you on how to apply your successful mountaintop
+                experience to your life.
+              </p> */}
             </div>
           </div>
         </div>
@@ -40,10 +47,11 @@ const StepsCustom = ({ blok }) => {
               </div>
               <div className="text">
                 <h5 className="title">
-                  <Link href="/pricing">1. Discovery</Link>
+                  <Link href="/pricing">1. Roadmap Planning</Link>
                 </h5>
                 <p className="mb-0">
-                  Get to know the child and their habits/usual path.
+                  Plan the goals you want to reach before embarking on an
+                  exciting journey.
                 </p>
               </div>
             </div>
@@ -55,10 +63,11 @@ const StepsCustom = ({ blok }) => {
               </div>
               <div className="text">
                 <h5 className="title">
-                  <Link href="/pricing">2. Goal Setting</Link>
+                  <Link href="/pricing">2. Backpack Packing</Link>
                 </h5>
                 <p className="mb-0">
-                  Set goals, dream, and expand their imagination.
+                  Plan the goals you want to reach before embarking on an
+                  exciting journey.
                 </p>
               </div>
             </div>

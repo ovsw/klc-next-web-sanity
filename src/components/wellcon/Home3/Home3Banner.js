@@ -67,9 +67,9 @@ const Home3Banner = (props) => {
                 data-wow-delay=".80ms"
               >
                 <img
-                  src="/assets/images/banner/banner_img.png"
+                  src="/assets/images/banner/banner_img.jpg"
                   alt="img"
-                  className="image-fit"
+                  className="image-fit rounded-lg tw-rounded-3xl"
                 />
                 <span className="bg-thm-color-three circle_element" />
               </div>
