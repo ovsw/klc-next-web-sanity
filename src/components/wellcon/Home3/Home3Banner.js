@@ -6,10 +6,10 @@ const Home3Banner = (props) => {
   const [video, setVideo] = useState(false);
 
   const {
-    title: heading1 = "heading1",
-    heading2 = "heading 2",
-    intro = "intro paragraph short text goes here maybe blurb, lorem ipsum dolor sit amet consequiturower adipiscit elit",
-    btn_text,
+    title: heading1 = "The CLIMB Kids",
+    heading2 = "Life Coaching Journey",
+    intro = "Great ready for an exhilarating climb to reach the top of your mountain of success. ",
+    btn_text = "Learn More",
     btn_url,
     video_id,
   } = props;
