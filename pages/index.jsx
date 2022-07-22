@@ -41,7 +41,7 @@ export default function Home({ data, preview }) {
       {/* {JSON.stringify(page)} */}
       {/* <SectionRenderer sections={page?.sections} /> */}
       {preview && <p>Preview mode.</p>}
-      {page.modules.map((module, key) => {
+      {page?.modules?.map((module, key) => {
         return <Module key={key} index={key} module={module} />;
       })}
     </>

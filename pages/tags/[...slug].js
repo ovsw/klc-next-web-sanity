@@ -26,8 +26,8 @@ export default function Page({ data, preview }) {
     enabled: preview,
   });
 
-  console.log("PREVIEW", preview);
-  console.log("DATA", pageData);
+  // console.log("PREVIEW", preview);
+  // console.log("DATA", pageData);
 
   return (
     <>

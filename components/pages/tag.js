@@ -4,7 +4,7 @@ import { Module } from "components/modules";
 import PostList from "components/blog/posts-list";
 
 const Page = ({ page = {} }) => {
-  console.log("from tag page", page);
+  // console.log("from tag page", page);
   const { title = "[missing title]", modules = [], relatedPosts = [] } = page;
   return (
     <>
