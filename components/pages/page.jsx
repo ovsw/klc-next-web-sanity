@@ -7,7 +7,7 @@ const Page = ({ page }) => {
     <>
       {/* <h1>Page: {page?.title}</h1> */}
       {/* ===========  MODULES =========== */}
-      {modules.length > 0 &&
+      {modules?.length > 0 &&
         modules.map((module, key) => {
           return <Module key={key} index={key} module={module} />;
         })}

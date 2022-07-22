@@ -2,7 +2,7 @@ import { urlFor } from "lib/sanity";
 import Image from "next/image";
 
 const PostImage = ({ image }) => {
-  console.log("image", image);
+  // console.log("image", image);
   return (
     <div className="post_img">
       {/* <img

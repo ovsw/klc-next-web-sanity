@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import { stickyNav } from "../utils";
 import { DefaultHeadActions, HeadActions } from "./HeadActions";
-import HeaderSidebar from "./headerSidebar";
-import HeaderTop from "./headerTop";
+import HeaderSidebar from "./HeaderSidebar";
+import HeaderTop from "./HeaderTop";
 
 import Image from "next/image";
 import {
@@ -13,7 +13,7 @@ import {
   HomeMenu,
   PageMenu,
   PortfolioMenu,
-} from "./nav-menu";
+} from "./Nav-menu";
 import SearchTrigger from "./SearchTrigger";
 
 const Header = ({

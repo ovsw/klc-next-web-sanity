@@ -7,7 +7,7 @@ import {
   PageMenu,
   PortfolioMenu,
   JourneyMenu,
-} from "./nav-menu";
+} from "./Nav-menu";
 
 const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState("");

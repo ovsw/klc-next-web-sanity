@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { animation, aTagClick, pieChart, scrollTop } from "src/utils";
-import Footer from "./footer";
-import Header from "./header";
-import MobileMenu from "./mobileMenu";
-import ScrollTop from "./scrollTop";
+import Footer from "./Footer";
+import Header from "./Header";
+import MobileMenu from "./MobileMenu";
+import ScrollTop from "./ScrollTop";
 
 const Layout = ({
   children,

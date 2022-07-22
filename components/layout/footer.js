@@ -1,4 +1,4 @@
-import { DefaultFooter, Footer1, Footer2 } from "./footerStyle";
+import { DefaultFooter, Footer1, Footer2 } from "./FooterStyle";
 
 const Footer = ({ footerStyle }) => {
   const footerFun_ = () => {

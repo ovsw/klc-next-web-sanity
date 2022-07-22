@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "components/layout/layout";
+import Layout from "components/layout/Layout";
 
 // import StepsCustom from "../src/components/steps-custom";
 // import Home2Why from "../src/components/wellcon/home2/Home2Why";
