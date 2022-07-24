@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { DefaultFooter, Footer1, Footer2 } from "./FooterStyle";
 
 const Footer = ({ footerStyle }) => {
+  // TEST FOR COMMIT
   const footerFun_ = () => {
     switch (footerStyle) {
       case 1:
