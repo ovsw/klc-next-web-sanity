@@ -2,13 +2,6 @@
 // import SEO from "../next-seo.config";
 import Link from "next/link";
 
-import {
-  getAllPosts,
-  getPostBySlug,
-  getAllPagesGeneric,
-  getAllPathsInfo,
-} from "lib/api";
-
 // import { useDebugValue } from "react";
 
 // import getOgImage from "../utils/getOgImageFromStory";
@@ -27,7 +20,7 @@ export default function Page() {
         noindex={story.content.seo_noindex}
         openGraph={ogContent}
       /> */}
-      <p>Tag Page</p>
+      <p>Tags Page</p>
     </>
   );
 }

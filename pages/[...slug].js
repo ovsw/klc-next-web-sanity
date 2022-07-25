@@ -1,14 +1,6 @@
 // import { NextSeo } from "next-seo";
 // import SEO from "../next-seo.config";
 import { getClient } from "lib/sanity.server";
-
-// import {
-//   getAllPosts,
-//   getPostBySlug,
-//   getAllPagesGeneric,
-//   getAllPathsInfo,
-// } from "lib/api";
-
 import { usePreviewSubscription } from "lib/sanity";
 import { getAllDocSlugs, queries } from "data";
 

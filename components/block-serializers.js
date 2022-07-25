@@ -44,7 +44,7 @@ export const blockSerializers = {
         <a
           href={value?.href}
           target={target}
-          rel={target === "_blank" && "noindex nofollow"}
+          rel={target === "_blank" ? "noindex nofollow" : undefined}
         >
           {children}
         </a>

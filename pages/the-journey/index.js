@@ -2,13 +2,6 @@
 // import SEO from "../next-seo.config";
 import Link from "next/link";
 
-import {
-  getAllPosts,
-  getPostBySlug,
-  getAllPagesGeneric,
-  getAllPathsInfo,
-} from "lib/api";
-
 // import { useDebugValue } from "react";
 
 // import getOgImage from "../utils/getOgImageFromStory";
