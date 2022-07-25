@@ -5,6 +5,7 @@ import { getImageDimensions } from "@sanity/asset-utils";
 
 const PostCard = ({ post }) => {
   // console.log("post from post card", post);
+  const cardLink = `/${post.slug.current || post.slug}`;
   return (
     <div className="col-xl-4 col-md-6">
       <article className="post style_2 wow fadeInDown" data-wow-delay=".20ms">
@@ -48,13 +49,13 @@ const PostCard = ({ post }) => {
                       </li> */}
           </ul>
           <h4 className="post_title">
-            <Link href="/blog-details">{post.title}</Link>
+            <Link href={cardLink}>{post.title}</Link>
           </h4>
           <p className="post_text">
             Quis autem vel eumiure reprehenderit quis volupta velit esse quam
             nihil molestiae conse quatur vel illum qui dolorem
           </p>
-          <Link href={`/${post.slug.current || post.slug}`}>
+          <Link href={cardLink}>
             <a className="thm-btn bg-thm-color-white thm-color-one btn-rectangle">
               Read More <i className="fal fa-chevron-right ml-2" />
             </a>
