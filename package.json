@@ -4,10 +4,12 @@
   "scripts": {
     "dev": "next dev",
     "devi": "NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
+    "build": "echo 'Building Sanity to public/studio…' && cd studio && npx sanity build ../public/studio -y && cd .. && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "cd studio && yarn"
   },
+  "license": "MIT",
   "dependencies": {
     "@fevernova90/next-sanity-image": "^0.0.4",
     "@headlessui/react": "^1.6.6",
