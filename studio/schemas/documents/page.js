@@ -18,6 +18,7 @@ export default {
       title: "Title",
       type: "string",
       group: "settings",
+      validation: (Rule) => Rule.required().error("Please enter a title"),
     },
     {
       name: "slug",
@@ -28,6 +29,7 @@ export default {
         source: "title",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required().error("Please enter a slug"),
       group: "settings",
     },
     {
