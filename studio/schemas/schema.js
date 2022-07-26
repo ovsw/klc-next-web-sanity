@@ -3,12 +3,12 @@ import createSchema from "part:@sanity/base/schema-creator";
 // Then import schema types from any plugins that might expose them
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
+// =================================
 // document types
 import page from "./documents/page";
 import section from "./documents/section";
 
 import author from "./documents/author";
-// import pageHome from "./documents/pageHome";
 import pageJourneyItem from "./documents/page-journey-item";
 import pageJourneyStep from "./documents/page-journey-step";
 import post from "./documents/post";
@@ -21,18 +21,25 @@ import promoSettings from "./documents/settings-promo";
 // import footerSettings from './documents/settings-footer'
 // import shopSettings from './documents/settings-shop'
 import seoSettings from "./documents/settings-seo";
-// import menu from './documents/menu'
+import menu from "./documents/menu";
 import redirect from "./documents/redirect";
 
+// =================================
 // import object schemas
 import complexPortableText from "./objects/complexPortableText";
 import photo from "./objects/photo";
 import mainImage from "./objects/mainImage";
-import quote from "./objects//rteBlocks/quote";
+import quote from "./objects/rteBlocks/quote";
+
+// nav
+import navDropdown from "./objects/nav-dropdown";
+import navPage from "./objects/nav-page";
+import navLink from "./objects/nav-link";
 
 // objects from HULL
 import seo from "./objects/seo";
 
+// =================================
 // import module schemas
 import hero from "./modules/hero";
 import topBanner from "./modules/top-banner";
@@ -72,6 +79,7 @@ export default createSchema({
     promoSettings,
     seoSettings,
     redirect,
+    menu,
 
     /* --------------- */
     /* 2: Module types */
@@ -96,6 +104,10 @@ export default createSchema({
     photo,
 
     quote,
+
+    navDropdown,
+    navPage,
+    navLink,
 
     seo,
   ]),

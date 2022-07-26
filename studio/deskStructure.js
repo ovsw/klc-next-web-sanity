@@ -1,23 +1,6 @@
-// /deskStructure.js
-// import React from "react";
 import S from "@sanity/desk-tool/structure-builder";
 import { createSuperPane } from "sanity-super-pane";
 import { Article } from "phosphor-react";
-
-// import {
-//   MdSettings,
-//   MdPerson,
-//   MdFolder,
-//   MdBook,
-//   MdList,
-//   MdArrowForward,
-//   MdEdit,
-//   MdVisibility,
-//   MdTag,
-//   MdHome,
-// } from "react-icons/md";
-// import { FaBook, FaFeatherAlt } from "react-icons/fa";
-// import { IoFootstepsSharp, IoFootstepsOutline } from "react-icons/io5";
 
 // import Emoji from "a11y-react-emoji";
 
@@ -28,7 +11,7 @@ import { settingsMenu } from "./desk/settings";
 import { pagesMenu } from "./desk/pages";
 import { blogMenu } from "./desk/blog";
 // import { shopMenu } from './desk/shop'
-// import { menusMenu } from './desk/menus'
+import { menusMenu } from "./desk/menus";
 
 export default () =>
   S.list()
@@ -38,6 +21,8 @@ export default () =>
         blogMenu,
         S.divider(),
         pagesMenu,
+        S.divider(),
+        menusMenu,
         S.divider(),
         settingsMenu,
         S.divider(),
