@@ -162,8 +162,8 @@ export const pagesMenu = S.listItem()
       .items([
         currentHomePage,
         // currentShopPage,
-        currentJourneyPage,
         currentErrorPage,
+        currentJourneyPage,
         S.listItem()
           .icon(Ladder)
           .title("Journey Steps Pages")
