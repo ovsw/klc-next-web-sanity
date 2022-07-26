@@ -30,7 +30,7 @@ const Page = ({ page = {} }) => {
             eyebrowText={`Posts tagged: "${title}"`}
             topPaddingSmall={true}
             emptyMesasage={
-              <p class=" tw-text-xl tw-mx-auto">
+              <p className=" tw-text-xl tw-mx-auto">
                 We're adding new posts weekly. Please check back soon!
               </p>
             }
