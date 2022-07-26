@@ -35,11 +35,11 @@ export default () =>
     .title("Website")
     .items(
       [
-        settingsMenu,
+        blogMenu,
         S.divider(),
         pagesMenu,
         S.divider(),
-        blogMenu,
+        settingsMenu,
         S.divider(),
         S.listItem()
           .title("[Dev] All Pages List")

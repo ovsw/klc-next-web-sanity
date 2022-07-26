@@ -204,6 +204,7 @@ export const pagesMenu = S.listItem()
                   *[_type == "generalSettings"][0].home._ref,
                   *[_type == "generalSettings"][0].journey._ref,
                   *[_type == "generalSettings"][0].blog._ref,
+                  *[_type == "generalSettings"][0].tags._ref,
                   *[_type == "generalSettings"][0].error._ref,
                 ]) && !(_id in path("drafts.**"))`
               )

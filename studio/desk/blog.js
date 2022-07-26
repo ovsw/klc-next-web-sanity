@@ -3,11 +3,17 @@ import S from "@sanity/desk-tool/structure-builder";
 import sanityClient from "part:@sanity/base/client";
 import { IntentLink, Link } from "part:@sanity/base/router";
 
-// import { createSuperPane } from "sanity-super-pane";
+import { createSuperPane } from "sanity-super-pane";
 
 import { Card, Stack, Text } from "@sanity/ui";
 
-import { Hash, Article, UserCircle, HouseSimple } from "phosphor-react";
+import {
+  Hash,
+  Article,
+  UserCircle,
+  HouseSimple,
+  TagSimple,
+} from "phosphor-react";
 import { FaFeatherAlt } from "react-icons/fa";
 
 import { standardViews } from "./previews/standard";
@@ -67,36 +73,64 @@ const currentBlogHome = S.listItem()
       .views(standardViews);
   });
 
+const currentTagsHome = S.listItem()
+  .title("Tags Page")
+  .icon(TagSimple)
+  .child(async () => {
+    const data = await sanityClient.fetch(`
+      *[_type == "generalSettings"][0]{
+        tags->{_id}
+      }
+    `);
+
+    if (!data?.tags)
+      return S.component(() => (
+        <EmptyNotice
+          title="Tags Page"
+          type="page"
+          link="settings;general"
+          linkTitle="General Settings"
+        />
+      )).title("Tags Page");
+
+    return S.document()
+      .id(data.tags._id)
+      .schemaType("page")
+      .views(standardViews);
+  });
+
 export const blogMenu = S.listItem()
-  .title("Blog Pages")
+  .title("Blog")
   .id("blog")
   .child(
     S.list()
       .title("Blog Pages")
       .items([
-        currentBlogHome,
-        // S.listItem()
-        //   .title("Posts List")
-        //   .icon(Article)
-        //   .child(createSuperPane("post", S)),
         S.listItem()
+          .title("Blog Posts")
           .icon(Article)
-          .title("Posts")
-          .schemaType("post")
-          .child(
-            S.documentTypeList("post")
-              .title("Post Pages")
-              .child((documentId) =>
-                S.document()
-                  .documentId(documentId)
-                  .schemaType("post")
-                  .views(standardViews)
-              )
-          ),
+          .child(createSuperPane("post", S)),
+        S.divider(),
+        currentBlogHome,
+        currentTagsHome,
+        // S.listItem()
+        //   .icon(Article)
+        //   .title("Posts")
+        //   .schemaType("post")
+        //   .child(
+        //     S.documentTypeList("post")
+        //       .title("Post Pages")
+        //       .child((documentId) =>
+        //         S.document()
+        //           .documentId(documentId)
+        //           .schemaType("post")
+        //           .views(standardViews)
+        //       )
+        //   ),
         S.divider(),
         S.listItem()
           .icon(Hash)
-          .title("Tags")
+          .title("Tag Pages")
           .schemaType("tag")
           .child(
             S.documentTypeList("tag")
