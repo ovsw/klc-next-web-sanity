@@ -4,8 +4,9 @@ import { groq } from "next-sanity";
 export const homeID = groq`*[_type=="generalSettings"][0].home->_id`;
 export const homeSlug = groq`*[_type=="generalSettings"][0].home->slug.current`;
 export const shopID = groq`*[_type=="generalSettings"][0].shop->_id`;
+export const journeyHomeID = groq`*[_type=="generalSettings"][0].journey->_id`;
+export const tagsHomeID = groq`*[_type=="generalSettings"][0].tags->_id`;
 export const errorID = groq`*[_type=="generalSettings"][0].error->_id`;
-export const journeyID = groq`*[_type=="generalSettings"][0].journey->_id`;
 
 // get the alt attribute specified in the Media Library when fetching images inside portable text field
 export const rteBodyWithImageAltFromLibrary = groq`

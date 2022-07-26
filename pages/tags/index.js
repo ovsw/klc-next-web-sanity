@@ -1,12 +1,41 @@
-// import { NextSeo } from "next-seo";
-// import SEO from "../next-seo.config";
-import Link from "next/link";
+import { groq } from "next-sanity";
+import { usePreviewSubscription } from "lib/sanity";
+import { getClient } from "lib/sanity.server";
+
+import { Module } from "components/modules";
+
+import { queries } from "data";
 
 // import { useDebugValue } from "react";
 
 // import getOgImage from "../utils/getOgImageFromStory";
 
-export default function Page() {
+const tagsHomeQuery = groq`
+     *[_type == "page" && _id match ${queries.tagsHomeID}] | order(_updatedAt desc)[0]{
+      "id": _id,
+      hasTransparentHeader,
+      modules[]{
+        defined(_ref) => { ...@->content[0] {
+         ${queries.modules}
+        }},
+        !defined(_ref) => {
+         ${queries.modules}
+        }
+      },
+      title,
+      seo
+    }`;
+
+export default function Page({ data, preview }) {
+  // subscribe to the preview data
+  const { data: page } = usePreviewSubscription(tagsHomeQuery, {
+    // params: { slug: data.home?.slug },
+    initialData: data.page,
+    enabled: preview,
+  });
+
+  // console.log("PREVIEW", preview);
+
   return (
     <>
       {/* <Head>
@@ -20,7 +49,25 @@ export default function Page() {
         noindex={story.content.seo_noindex}
         openGraph={ogContent}
       /> */}
-      <p>Tags Page</p>
+      {/* {preview && <p>Preview mode.</p>} */}
+      {page?.modules?.map((module, key) => {
+        return <Module key={key} index={key} module={module} />;
+      })}
     </>
   );
+}
+
+// This function is called during the build (build time)
+// Provides props to your page
+// It will create static page
+export async function getStaticProps({ preview = false }) {
+  // fetch the home page data at build time
+  const pageData = await getClient(preview).fetch(tagsHomeQuery);
+
+  return {
+    props: {
+      preview,
+      data: { page: pageData },
+    },
+  };
 }

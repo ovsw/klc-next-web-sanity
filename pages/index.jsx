@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { usePreviewSubscription, urlFor } from "lib/sanity";
+import { usePreviewSubscription } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 
 import { Module } from "components/modules";
@@ -8,7 +8,7 @@ import { queries } from "data";
 
 // home query, extracted because we use in both getStaticProps and the preview Subscription
 const homeQuery = groq`
-     *[_type == "page" && _id match *[_type=="generalSettings"][0].home->_id] | order(_updatedAt desc)[0]{
+     *[_type == "page" && _id match ${queries.homeID}] | order(_updatedAt desc)[0]{
       "id": _id,
       hasTransparentHeader,
       modules[]{
