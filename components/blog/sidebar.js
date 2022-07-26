@@ -18,7 +18,7 @@ const BlogSidebar = ({ site }) => {
 
         <SidebarRecentPosts heading="Latest Posts" posts={site?.recentPosts} />
 
-        <SidebarBanner />
+        {/* <SidebarBanner /> */}
 
         <SidebarTags heading="All Tags" tags={site?.tags} />
       </div>
