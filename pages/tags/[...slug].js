@@ -13,17 +13,30 @@ import TagPage from "components/pages/tag";
 
 export default function Page({ data, preview }) {
   // subscribe to the preview data
-  const { data: pageData } = usePreviewSubscription(data?.query, {
-    params: data?.queryParams ?? {},
-    initialData: data.pageData,
-    enabled: preview,
-  });
+  const { data: pageQueryDataWithPreview } = usePreviewSubscription(
+    data?.query,
+    {
+      params: data?.queryParams ?? {},
+      initialData: data.pageQueryData,
+      enabled: preview,
+    }
+  );
 
   // console.log("PREVIEW", preview);
-  // console.log("DATA", pageData);
+  // console.log("pageQueryDataWithPreview", pageQueryDataWithPreview);
+
+  const { page, site } = pageQueryDataWithPreview;
 
   return (
-    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
+    <Layout
+      page={page}
+      site={site}
+      noHeaderTop
+      sideBar
+      headerStyle={1}
+      absolute
+      footerStyle={2}
+    >
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -40,7 +53,7 @@ export default function Page({ data, preview }) {
         {JSON.stringify(pageData)}
         {pageData?.page?.title} - type: {pageData?.page?._type}
       </p> */}
-      <TagPage page={pageData.page} />
+      <TagPage page={page} />
     </Layout>
   );
 }
@@ -56,14 +69,14 @@ export async function getStaticProps({ params, preview = false }) {
   const query = queries.tagPageQuery;
   const queryParams = { slugVariations: [slug, `/${slug}`, `/${slug}/`] };
   // make the query
-  const pageData = await getClient(preview).fetch(query, queryParams);
+  const pageQueryData = await getClient(preview).fetch(query, queryParams);
 
   return {
     props: {
       preview,
       data: {
         // pass down the query result to the page component
-        pageData,
+        pageQueryData,
         // as well as the query and query parameters, needed for the via usePreviewSubscription()
         query,
         queryParams,

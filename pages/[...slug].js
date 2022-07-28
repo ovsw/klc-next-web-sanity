@@ -14,17 +14,30 @@ import PostPage from "components/pages/post";
 
 export default function Page({ data, preview }) {
   // subscribe to the preview data
-  const { data: pageData } = usePreviewSubscription(data?.query, {
-    params: data?.queryParams ?? {},
-    initialData: data.pageData,
-    enabled: preview,
-  });
+  const { data: pageQueryDataWithPreview } = usePreviewSubscription(
+    data?.query,
+    {
+      params: data?.queryParams ?? {},
+      initialData: data.pageQueryData,
+      enabled: preview,
+    }
+  );
+
+  const { page, site } = pageQueryDataWithPreview;
 
   // console.log("PREVIEW", preview);
-  // console.log("DATA", pageData);
+  // console.log("pageQueryData", pageQueryData);
 
   return (
-    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
+    <Layout
+      site={site}
+      page={page}
+      noHeaderTop
+      sideBar
+      headerStyle={1}
+      absolute
+      footerStyle={2}
+    >
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -38,14 +51,14 @@ export default function Page({ data, preview }) {
       /> */}
       {/* <p>
         Page "data":
-        {JSON.stringify(pageData)}
-        {pageData?.page?.title} - type: {pageData?.page?._type}
+        {JSON.stringify(pageQueryData)}
+        {pageQueryData?.page?.title} - type: {pageQueryData?.page?._type}
       </p> */}
 
-      {pageData?.page?._type === "page" ? (
-        <GenericPage page={pageData.page} />
+      {page?._type === "page" ? (
+        <GenericPage page={page} />
       ) : (
-        <PostPage data={pageData} />
+        <PostPage data={pageQueryDataWithPreview} />
       )}
     </Layout>
   );
@@ -53,6 +66,7 @@ export default function Page({ data, preview }) {
 
 // TODO: add next and prev posts info to the page
 // https://stackoverflow.com/questions/62594914/how-to-auto-reference-to-other-post-in-sanity-io
+
 // =========== GET DATA FROM SANITY ===========
 export async function getStaticProps({ params, preview = false }) {
   // this is a catch-all route so slug param is an array, we need to join it
@@ -62,14 +76,14 @@ export async function getStaticProps({ params, preview = false }) {
   const query = queries.rootPageQuery;
   const queryParams = { slugVariations: [slug, `/${slug}`, `/${slug}/`] };
   // make the query
-  const pageData = await getClient(preview).fetch(query, queryParams);
+  const pageQueryData = await getClient(preview).fetch(query, queryParams);
 
   return {
     props: {
       preview,
       data: {
         // pass down the query result to the page component
-        pageData,
+        pageQueryData,
         // as well as the query and query parameters, needed for the via usePreviewSubscription()
         query,
         queryParams,
@@ -82,7 +96,6 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const allPages = await getAllDocSlugs("page");
   const allPosts = await getAllDocSlugs("post");
-  // const allTags = await getAllDocSlugs("tag");
 
   const allDocs = [...allPages, ...allPosts];
 

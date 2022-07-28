@@ -11,34 +11,27 @@ import { queries } from "data";
 
 // import getOgImage from "../utils/getOgImageFromStory";
 
-const journeyHomeQuery = groq`
-     *[_type == "page" && _id match ${queries.journeyHomeID}] | order(_updatedAt desc)[0]{
-      "id": _id,
-      hasTransparentHeader,
-      modules[]{
-        defined(_ref) => { ...@->content[0] {
-         ${queries.modules}
-        }},
-        !defined(_ref) => {
-         ${queries.modules}
-        }
-      },
-      title,
-      seo
-    }`;
-
 export default function Page({ data, preview }) {
   // subscribe to the preview data
-  const { data: page } = usePreviewSubscription(journeyHomeQuery, {
+  const { data: queryDataWithPreview } = usePreviewSubscription(data?.query, {
     // params: { slug: data.home?.slug },
-    initialData: data.page,
+    initialData: data?.pageQueryData,
     enabled: preview,
   });
 
-  // console.log("PREVIEW", preview);
+  const { page, site } = queryDataWithPreview;
+  // console.log("queryDataWithPreview", queryDataWithPreview);
 
   return (
-    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
+    <Layout
+      page={page}
+      site={site}
+      noHeaderTop
+      sideBar
+      headerStyle={1}
+      absolute
+      footerStyle={2}
+    >
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -62,13 +55,37 @@ export default function Page({ data, preview }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps({ preview = false }) {
+  // query for this fixed page
+  const pageQuery = groq`
+     *[_type == "page" && _id match ${queries.journeyHomeID}] | order(_updatedAt desc)[0]{
+      "id": _id,
+      hasTransparentHeader,
+      modules[]{
+        defined(_ref) => { ...@->content[0] {
+         ${queries.modules}
+        }},
+        !defined(_ref) => {
+         ${queries.modules}
+        }
+      },
+      title,
+      seo
+    }
+    `;
+
+  const query = queries.formFixedPageQueryWSiteData(pageQuery);
+
   // fetch the home page data at build time
-  const pageData = await getClient(preview).fetch(journeyHomeQuery);
+  const pageQueryData = await getClient(preview).fetch(query);
+  // const pageQueryData = await getStaticPage(pageQuery, preview);
 
   return {
     props: {
       preview,
-      data: { page: pageData },
+      data: {
+        pageQueryData,
+        query,
+      },
     },
   };
 }

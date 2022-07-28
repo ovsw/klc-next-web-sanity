@@ -8,6 +8,44 @@ export const journeyHomeID = groq`*[_type=="generalSettings"][0].journey->_id`;
 export const tagsHomeID = groq`*[_type=="generalSettings"][0].tags->_id`;
 export const errorID = groq`*[_type=="generalSettings"][0].error->_id`;
 
+// =====================================
+// =========== MENU QUERIES ============
+
+// Construct our "page" GROQ
+const page = groq`
+  "type": _type,
+  "slug": slug.current,
+  "isHome": _id == ${homeID},
+  "isShop": _id == ${shopID}
+`;
+
+// Construct our "link" GROQ
+const link = `
+  _key,
+  _type,
+  title,
+  url,
+  "page": page->{
+    ${page}
+  }
+`;
+
+// ===================
+// CONTENT SUB-QUERIES
+
+// Construct our "image meta" GROQ
+export const imageMeta = `
+  "alt": coalesce(alt, asset->altText),
+  asset,
+  crop,
+  customRatio,
+  hotspot,
+  "id": asset->assetId,
+  "type": asset->mimeType,
+  "aspectRatio": asset->metadata.dimensions.aspectRatio,
+  "lqip": asset->metadata.lqip
+`;
+
 // get the alt attribute specified in the Media Library when fetching images inside portable text field
 export const rteBodyWithImageAltFromLibrary = groq`
   rteBody[] {
@@ -19,14 +57,6 @@ export const rteBodyWithImageAltFromLibrary = groq`
     }
   },
   `;
-
-// Construct our "page" GROQ
-const page = groq`
-  "type": _type,
-  "slug": slug.current,
-  "isHome": _id == ${homeID},
-  "isShop": _id == ${shopID}
-`;
 
 // constuct our "post summary" GROQ
 const postSummaryFields = groq`
@@ -61,6 +91,7 @@ export const modules = groq`
     }
 `;
 
+// ==========================
 // Construct our "site" GROQ
 export const site = groq`
   "site": {
@@ -87,8 +118,20 @@ export const site = groq`
     "journeySteps": *[_type == "pageJourneyStep" && defined(slug)] | order(_createdAt asc) {title, slug} ,
   }
 `;
+// ================
+// PAGE SUB-QUERIES
 
-// ============================================
+// Construct our "fixerd page" GROQ that gets the page data with site data
+export function formFixedPageQueryWSiteData(pageQuery) {
+  return groq`{
+    "page": ${pageQuery},
+    ${site}
+  }`;
+}
+
+// ===============
+// PAGE QUERIES
+
 //  for [...slug]
 export const rootPageQuery = groq`
     {

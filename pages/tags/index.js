@@ -11,34 +11,31 @@ import { queries } from "data";
 
 // import getOgImage from "../utils/getOgImageFromStory";
 
-const tagsHomeQuery = groq`
-     *[_type == "page" && _id match ${queries.tagsHomeID}] | order(_updatedAt desc)[0]{
-      "id": _id,
-      hasTransparentHeader,
-      modules[]{
-        defined(_ref) => { ...@->content[0] {
-         ${queries.modules}
-        }},
-        !defined(_ref) => {
-         ${queries.modules}
-        }
-      },
-      title,
-      seo
-    }`;
-
 export default function Page({ data, preview }) {
   // subscribe to the preview data
-  const { data: page } = usePreviewSubscription(tagsHomeQuery, {
-    // params: { slug: data.home?.slug },
-    initialData: data.page,
-    enabled: preview,
-  });
+  const { data: pageQueryDataWithPreview } = usePreviewSubscription(
+    data?.query,
+    {
+      // params: { slug: data.home?.slug },
+      initialData: data.pageQueryData,
+      enabled: preview,
+    }
+  );
 
-  // console.log("PREVIEW", preview);
+  const { page, site } = pageQueryDataWithPreview;
+
+  // console.log("pageQueryDataWithPreview", pageQueryDataWithPreview);
 
   return (
-    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
+    <Layout
+      page={page}
+      site={site}
+      noHeaderTop
+      sideBar
+      headerStyle={1}
+      absolute
+      footerStyle={2}
+    >
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -62,13 +59,33 @@ export default function Page({ data, preview }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps({ preview = false }) {
+  const pageQuery = groq`
+     *[_type == "page" && _id match ${queries.tagsHomeID}] | order(_updatedAt desc)[0]{
+      "id": _id,
+      hasTransparentHeader,
+      modules[]{
+        defined(_ref) => { ...@->content[0] {
+         ${queries.modules}
+        }},
+        !defined(_ref) => {
+         ${queries.modules}
+        }
+      },
+      title,
+      seo
+    }`;
+
+  const query = queries.formFixedPageQueryWSiteData(pageQuery);
   // fetch the home page data at build time
-  const pageData = await getClient(preview).fetch(tagsHomeQuery);
+  const pageQueryData = await getClient(preview).fetch(query);
 
   return {
     props: {
       preview,
-      data: { page: pageData },
+      data: {
+        pageQueryData,
+        query,
+      },
     },
   };
 }

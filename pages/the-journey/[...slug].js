@@ -16,17 +16,27 @@ import JourneyItemPage from "components/pages/journeyItemPage";
 
 export default function Page({ data, preview }) {
   // subscribe to the preview data
-  const { data: pageData } = usePreviewSubscription(data?.query, {
+  const { data: queryDataWithPreview } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
-    initialData: data.pageData,
+    initialData: data.pageQueryData,
     enabled: preview,
   });
 
   // console.log("PREVIEW", preview);
-  // console.log("DATA", pageData);
+  // console.log("DATA", queryDataWithPreview);
+
+  const { page, site } = queryDataWithPreview;
 
   return (
-    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
+    <Layout
+      page={page}
+      site={site}
+      noHeaderTop
+      sideBar
+      headerStyle={1}
+      absolute
+      footerStyle={2}
+    >
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -45,10 +55,10 @@ export default function Page({ data, preview }) {
       {/* <h1>{pageData.page._type}</h1> */}
 
       {/* ================================== */}
-      {pageData.page._type === "pageJourneyStep" ? (
-        <JourneyStepPage page={pageData.page} />
+      {page._type === "pageJourneyStep" ? (
+        <JourneyStepPage page={page} />
       ) : (
-        <JourneyItemPage page={pageData.page} />
+        <JourneyItemPage page={page} />
       )}
     </Layout>
   );
@@ -71,14 +81,14 @@ export async function getStaticProps({ params, preview = false }) {
 
   const queryParams = { slugVariations: [slug, `/${slug}`, `/${slug}/`] };
   // make the query
-  const pageData = await getClient(preview).fetch(query, queryParams);
+  const pageQueryData = await getClient(preview).fetch(query, queryParams);
 
   return {
     props: {
       preview,
       data: {
         // pass down the query result to the page component
-        pageData,
+        pageQueryData,
         // as well as the query and query parameters, needed for the via usePreviewSubscription()
         query,
         queryParams,
