@@ -7,7 +7,7 @@ const PostTagsAndShare = ({ tags }) => {
         <h6>Tags for this post: </h6>
         <div className="tags">
           {tags.map((tag, i) => (
-            <Link href={`/${tag?.slug?.current}`} key={i}>
+            <Link href={`/tags/${tag?.slug?.current}`} key={i}>
               <a>{tag?.title}</a>
             </Link>
           ))}
