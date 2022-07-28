@@ -10,7 +10,7 @@ import * as queries from "./queries";
 // Fetch all dynamic docs
 export async function getAllDocSlugs(doc) {
   const data = await getClient().fetch(
-    `*[_type == "${doc}" && !(_id in [${queries.homeID}, ${queries.shopID}, ${queries.errorID}, ${queries.journeyHomeID}]) && wasDeleted != true && isDraft != true]{ "slug": slug.current }`
+    `*[_type == "${doc}" && !(_id in [${queries.homeID}, ${queries.shopID}, ${queries.errorID}, ${queries.journeyID}, ${queries.tagsHomeID}]) && wasDeleted != true && isDraft != true]{ "slug": slug.current }`
   );
   return data;
 }
