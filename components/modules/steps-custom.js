@@ -79,11 +79,11 @@ const StepsCustom = ({ blok }) => {
               </div>
               <div className="text">
                 <h5 className="title">
-                  <Link href="/pricing">3. Learning / instruction</Link>
+                  <Link href="/pricing">3. Journal &amp; Tools</Link>
                 </h5>
                 <p className="mb-0">
-                  Learn how to improve attitude, increace confidence, build
-                  grit.
+                  Treat yourself to a special journal where you will record
+                  milestones reached and build your confidence.
                 </p>
               </div>
             </div>
@@ -95,9 +95,12 @@ const StepsCustom = ({ blok }) => {
               </div>
               <div className="text">
                 <h5 className="title">
-                  <Link href="/pricing">4. Deciding & Doing</Link>
+                  <Link href="/pricing">4. Mountain Peak: Success!</Link>
                 </h5>
-                <p className="mb-0">Apply the new knowledge and skills. </p>
+                <p className="mb-0">
+                  You made it! Enjoy the rewards of renewed self-confidence,
+                  having successfully reached your goals..{" "}
+                </p>
               </div>
             </div>
           </div>
