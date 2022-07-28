@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next dev",
     "devi": "NODE_OPTIONS='--inspect' next dev",
-    "build": "echo 'Building Sanity to public/studio…' && cd studio && npx sanity build ../public/studio -y && cd .. && next build",
+    "build": "next build && echo 'Building Sanity to public/studio…' && cd studio && npx sanity build ../public/studio -y",
+    "buildsingle": "next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "cd studio && yarn"
