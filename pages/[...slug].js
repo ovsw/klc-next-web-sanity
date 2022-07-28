@@ -4,6 +4,7 @@ import { getClient } from "lib/sanity.server";
 import { usePreviewSubscription } from "lib/sanity";
 import { getAllDocSlugs, queries } from "data";
 
+import Layout from "components/layout";
 import GenericPage from "components/pages/page";
 import PostPage from "components/pages/post";
 
@@ -23,7 +24,7 @@ export default function Page({ data, preview }) {
   // console.log("DATA", pageData);
 
   return (
-    <>
+    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -46,7 +47,7 @@ export default function Page({ data, preview }) {
       ) : (
         <PostPage data={pageData} />
       )}
-    </>
+    </Layout>
   );
 }
 

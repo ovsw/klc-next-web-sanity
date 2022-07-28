@@ -4,6 +4,7 @@ import { getClient } from "lib/sanity.server";
 import { usePreviewSubscription } from "lib/sanity";
 import { getAllDocSlugs, queries } from "data";
 
+import Layout from "components/layout";
 import TagPage from "components/pages/tag";
 
 // import { useDebugValue } from "react";
@@ -22,7 +23,7 @@ export default function Page({ data, preview }) {
   // console.log("DATA", pageData);
 
   return (
-    <>
+    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -40,7 +41,7 @@ export default function Page({ data, preview }) {
         {pageData?.page?.title} - type: {pageData?.page?._type}
       </p> */}
       <TagPage page={pageData.page} />
-    </>
+    </Layout>
   );
 }
 

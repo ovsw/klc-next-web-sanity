@@ -2,6 +2,7 @@ import { groq } from "next-sanity";
 import { usePreviewSubscription } from "lib/sanity";
 import { getClient } from "lib/sanity.server";
 
+import Layout from "components/layout";
 import { Module } from "components/modules";
 
 import { queries } from "data";
@@ -37,7 +38,7 @@ export default function Page({ data, preview }) {
   // console.log("PREVIEW", preview);
 
   return (
-    <>
+    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -53,7 +54,7 @@ export default function Page({ data, preview }) {
       {page?.modules?.map((module, key) => {
         return <Module key={key} index={key} module={module} />;
       })}
-    </>
+    </Layout>
   );
 }
 

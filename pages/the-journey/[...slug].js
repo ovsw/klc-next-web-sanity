@@ -6,6 +6,7 @@ import { getClient } from "../../lib/sanity.server";
 import { usePreviewSubscription } from "lib/sanity";
 import { getJourneyDocSlugs, queries } from "data";
 
+import Layout from "components/layout";
 import JourneyStepPage from "components/pages/journeyStepPage";
 import JourneyItemPage from "components/pages/journeyItemPage";
 
@@ -25,7 +26,7 @@ export default function Page({ data, preview }) {
   // console.log("DATA", pageData);
 
   return (
-    <>
+    <Layout noHeaderTop sideBar headerStyle={1} absolute footerStyle={2}>
       {/* <Head>
         <title>{story ? story.name : "My Site"}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -49,7 +50,7 @@ export default function Page({ data, preview }) {
       ) : (
         <JourneyItemPage page={pageData.page} />
       )}
-    </>
+    </Layout>
   );
 }
 
